@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charlie Brown IT Support</title>
+  <meta name="description" content="Comprehensive technical support and troubleshooting portal for The Charlie Brown Organization (CIS 285 End User Training and Support project at the University of the Fraser Valley)." />
+  <meta property="og:title" content="Charlie Brown IT Support" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; }
+button { cursor: pointer; }
+</style>
+  <!-- Tailwind (same utility classes as the original app) and Lucide icons -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.546.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col bg-slate-100/60 font-sans text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+    <header id="hdr" class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs"></header>
+    <div id="crumb"></div>
+    <main id="main" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 pt-6 sm:pt-8"></main>
+    <div id="chat" class="fixed bottom-5 right-5 z-40"></div>
+    <div id="search"></div>
+    <footer id="ftr" class="bg-slate-900 text-slate-300 border-t border-slate-800"></footer>
+  </div>
+  <div id="boot" style="font-family:sans-serif;padding:24px;max-width:640px;margin:40px auto;color:#334155">
+  <b>Loading Charlie Brown IT Support...</b>
+  <p>If this message stays on screen, JavaScript did not run in this browser/viewer. Open this file in Chrome, Edge or Firefox (double-click it after extracting the zip).</p>
+  <pre id="boot-err" style="white-space:pre-wrap;color:#b91c1c"></pre></div>
+  <script>window.addEventListener('error',function(e){var b=document.getElementById('boot-err');if(b)b.textContent+=(e.message||'Script failed to load')+' '+(e.filename||'')+'\n';},true);</script>
+<noscript>This site needs JavaScript enabled.</noscript>
+  <script>/* Support content: edit text here. */
+window.DATA = {
+ "ORG_NAME": "The Charlie Brown Organization",
+ "APP_TITLE": "Charlie Brown IT Support",
+ "PHONE": "(555) 242-7543",
+ "EMAIL": "support@charliebrown-org.edu",
+ "HOURS": "Monday – Friday: 7:30 AM – 6:00 PM (PST)",
+ "LOCATION": "Charlie Brown Hall, Suite 204 (Campus IT Center)",
+ "HARDWARE": [
+  {
+   "id": "hw-power",
+   "title": "Computer Will Not Turn On",
+   "icon": "Power",
+   "symptoms": [
+    "No lights or fan noise when pressing the power button",
+    "Power light briefly blinks orange or turns off"
+   ],
+   "quickCheck": "Verify that the surge protector and wall outlet have power.",
+   "steps": [
+    {
+     "title": "Check Power Cables",
+     "description": "Ensure the power cord is firmly plugged into both the wall outlet and the computer."
+    },
+    {
+     "title": "Test the Outlet",
+     "description": "Plug another device (such as a lamp or phone charger) into the outlet to verify it works."
+    },
+    {
+     "title": "Perform a Power Drain",
+     "description": "Unplug the power cord, hold the power button down for 20 seconds, reconnect power, and turn it on."
+    }
+   ],
+   "proTip": "If using a laptop, check if the battery charging indicator light turns on.",
+   "escalation": "If the computer still will not turn on, contact IT Support."
+  },
+  {
+   "id": "hw-monitor",
+   "title": "Monitor Has No Display",
+   "icon": "Monitor",
+   "symptoms": [
+    "Computer turns on, but the screen remains black",
+    "Monitor displays a \"No Signal\" message"
+   ],
+   "quickCheck": "Confirm that the monitor power indicator light is turned on.",
+   "steps": [
+    {
+     "title": "Check Monitor Power",
+     "description": "Press the power button on the monitor to make sure it is powered on."
+    },
+    {
+     "title": "Secure the Video Cable",
+     "description": "Disconnect and firmly reconnect the HDMI, DisplayPort, or USB-C cable on both ends."
+    },
+    {
+     "title": "Check the Input Source",
+     "description": "Press the Source or Input button on the monitor and select the correct port."
+    }
+   ],
+   "proTip": "Try a different video cable or port if one is available.",
+   "escalation": "If the screen remains black, contact IT Support."
+  },
+  {
+   "id": "hw-printer",
+   "title": "Printer Is Not Working",
+   "icon": "Printer",
+   "symptoms": [
+    "Print jobs do not print or get stuck in queue",
+    "Printer status appears as offline"
+   ],
+   "quickCheck": "Verify the printer has paper loaded and no error lights are blinking.",
+   "steps": [
+    {
+     "title": "Check Power and Paper",
+     "description": "Ensure the printer is powered on, has paper, and shows no error messages or paper jams."
+    },
+    {
+     "title": "Restart the Printer",
+     "description": "Turn off the printer, wait 15 seconds, and turn it back on to clear its memory."
+    },
+    {
+     "title": "Clear the Print Queue",
+     "description": "Open printer settings on your computer, view the print queue, and cancel any stuck print jobs."
+    }
+   ],
+   "proTip": "Check our Tutorials page for a guide on clearing stuck print jobs.",
+   "escalation": "If the printer still fails to print, contact IT Support."
+  },
+  {
+   "id": "hw-peripherals",
+   "title": "Keyboard or Mouse Is Not Responding",
+   "icon": "Mouse",
+   "symptoms": [
+    "Mouse cursor is frozen or jumping",
+    "Keystrokes do not appear on the screen"
+   ],
+   "quickCheck": "Check if the Caps Lock light or mouse sensor light illuminates.",
+   "steps": [
+    {
+     "title": "Reconnect the USB Cable",
+     "description": "Unplug the keyboard or mouse and plug it into a different USB port directly on your computer."
+    },
+    {
+     "title": "Check Batteries and Power Switch",
+     "description": "For wireless devices, replace the batteries and confirm the power switch is set to ON."
+    },
+    {
+     "title": "Restart Your Computer",
+     "description": "Restart your computer to allow the operating system to reload peripheral drivers."
+    }
+   ],
+   "proTip": "Avoid connecting input devices through unpowered USB hubs when troubleshooting.",
+   "escalation": "If the keyboard or mouse still does not respond, contact IT Support."
+  },
+  {
+   "id": "hw-connection",
+   "title": "Basic Connection Problems",
+   "icon": "Usb",
+   "symptoms": [
+    "External drive, webcam, or dock is not recognized",
+    "\"USB device not recognized\" notification appears"
+   ],
+   "quickCheck": "Try connecting the device to a different USB port.",
+   "steps": [
+    {
+     "title": "Unplug and Reconnect",
+     "description": "Disconnect the device, wait 5 seconds, and plug it firmly into another port."
+    },
+    {
+     "title": "Connect Directly",
+     "description": "Plug the device directly into the computer rather than an unpowered multi-port adapter."
+    },
+    {
+     "title": "Restart the Computer",
+     "description": "Rebooting refreshes the operating system USB controllers and detects hardware changes."
+    }
+   ],
+   "proTip": "Always safely eject USB storage before unplugging to prevent data loss.",
+   "escalation": "If connection problems persist, contact IT Support."
+  }
+ ],
+ "SOFTWARE": [
+  {
+   "id": "sw-app-open",
+   "app": "Applications",
+   "title": "Application Will Not Open",
+   "icon": "AppWindow",
+   "symptoms": [
+    "Program freezes or closes immediately after opening",
+    "App displays a \"(Not Responding)\" message"
+   ],
+   "steps": [
+    {
+     "title": "Close Stuck Background Tasks",
+     "description": "Open Task Manager (Ctrl + Shift + Esc) and end any frozen tasks for the application."
+    },
+    {
+     "title": "Restart Your Computer",
+     "description": "Restarting clears temporary memory conflicts preventing programs from opening."
+    },
+    {
+     "title": "Check for Updates",
+     "description": "Ensure both your operating system and the application have all available updates installed."
+    }
+   ],
+   "proTip": "See our Tutorials page for how to check system resource usage.",
+   "alternativeSolution": "If the application still fails to open, contact IT Support."
+  },
+  {
+   "id": "sw-email",
+   "app": "Email",
+   "title": "Email Is Not Working",
+   "icon": "Mail",
+   "symptoms": [
+    "New emails are not syncing or sending",
+    "Error message appears when opening your inbox"
+   ],
+   "steps": [
+    {
+     "title": "Check Internet Connection",
+     "description": "Confirm that other websites open in your browser to verify your internet connection is active."
+    },
+    {
+     "title": "Test Webmail Access",
+     "description": "Sign into webmail using a web browser to verify your email account is active."
+    },
+    {
+     "title": "Restart the Email Client",
+     "description": "Close and reopen your email application to force a fresh mailbox synchronization."
+    }
+   ],
+   "proTip": "If webmail works, the issue is with the desktop app rather than your email account.",
+   "alternativeSolution": "If email remains unavailable, contact IT Support."
+  },
+  {
+   "id": "sw-signin",
+   "app": "Login",
+   "title": "Cannot Sign In",
+   "icon": "Lock",
+   "symptoms": [
+    "Password not accepted error message",
+    "Account locked or sign-in blocked notice"
+   ],
+   "steps": [
+    {
+     "title": "Check Keyboard Settings",
+     "description": "Ensure Caps Lock is off and your keyboard language is set correctly."
+    },
+    {
+     "title": "Re-enter Your Password Carefully",
+     "description": "Type your username and password slowly to avoid accidental typos."
+    },
+    {
+     "title": "Use Account Recovery",
+     "description": "Follow your organization approved password recovery portal to reset your password."
+    }
+   ],
+   "proTip": "Never share your login credentials or security codes with anyone.",
+   "alternativeSolution": "If your account remains locked, contact IT Support."
+  },
+  {
+   "id": "sw-install",
+   "app": "Software",
+   "title": "Software Installation Problem",
+   "icon": "Download",
+   "symptoms": [
+    "Installation fails or stops with an error message",
+    "Administrator permission required prompt appears"
+   ],
+   "steps": [
+    {
+     "title": "Check Organization Policies",
+     "description": "Confirm that the software is approved for use on organization computers."
+    },
+    {
+     "title": "Run as Administrator",
+     "description": "Right-click the installation setup file and choose \"Run as administrator\" if permitted."
+    },
+    {
+     "title": "Restart and Retry",
+     "description": "Restart your computer to finish any pending updates, then run the installer again."
+    }
+   ],
+   "proTip": "Visit our Downloads page for verified software tools.",
+   "alternativeSolution": "Contact IT Support to request software installation permissions."
+  },
+  {
+   "id": "sw-saving",
+   "app": "Files",
+   "title": "Files Are Not Saving Correctly",
+   "icon": "HardDrive",
+   "symptoms": [
+    "\"File in use\" or \"Permission denied\" error when saving",
+    "Cloud drive sync error or yellow warning icon"
+   ],
+   "steps": [
+    {
+     "title": "Use \"Save As\" with a New Name",
+     "description": "Save a copy to your local Documents folder with a slightly different file name."
+    },
+    {
+     "title": "Check Storage Space",
+     "description": "Confirm your computer drive or cloud account has sufficient free storage space."
+    },
+    {
+     "title": "Close Other Open Copies",
+     "description": "Ensure the file is not currently open in another window or on another device."
+    }
+   ],
+   "proTip": "Save copies of important documents regularly to avoid lost work.",
+   "alternativeSolution": "Contact IT Support if file errors persist."
+  }
+ ],
+ "TROUBLE": [
+  {
+   "id": "tb-slow",
+   "title": "Slow Computer",
+   "urgency": "Medium",
+   "icon": "Gauge",
+   "commonCauses": [
+    "Too many applications running simultaneously",
+    "Computer has not been restarted recently"
+   ],
+   "primarySteps": [
+    {
+     "step": 1,
+     "title": "Restart Your Computer",
+     "details": "Save your work and restart the computer to clear temporary memory and background tasks."
+    },
+    {
+     "step": 2,
+     "title": "Close Unused Applications",
+     "details": "Close heavy applications and unnecessary browser tabs to free up system memory."
+    },
+    {
+     "step": 3,
+     "title": "Check Task Manager",
+     "details": "Press Ctrl + Shift + Esc to see which applications are consuming high CPU or memory."
+    }
+   ]
+  },
+  {
+   "id": "tb-wifi",
+   "title": "Wi-Fi Connection Problem",
+   "urgency": "High",
+   "icon": "WifiOff",
+   "commonCauses": [
+    "Wi-Fi turned off accidentally",
+    "Incorrect wireless network selected"
+   ],
+   "primarySteps": [
+    {
+     "step": 1,
+     "title": "Verify Wi-Fi Is Enabled",
+     "details": "Check the Wi-Fi icon in your system tray and make sure Wi-Fi is ON and Airplane mode is OFF."
+    },
+    {
+     "step": 2,
+     "title": "Reconnect to the Network",
+     "details": "Disconnect from the network and reconnect to the official organization network."
+    },
+    {
+     "step": 3,
+     "title": "Restart Your Computer",
+     "details": "Restart your computer to reset your wireless network adapter."
+    }
+   ]
+  },
+  {
+   "id": "tb-printer",
+   "title": "Printer Problem",
+   "urgency": "Medium",
+   "icon": "Printer",
+   "commonCauses": [
+    "Printer offline or disconnected",
+    "Stuck print job blocking the queue"
+   ],
+   "primarySteps": [
+    {
+     "step": 1,
+     "title": "Check Power and Paper",
+     "details": "Ensure the printer is turned on, loaded with paper, and shows no error lights."
+    },
+    {
+     "step": 2,
+     "title": "Clear Stuck Print Jobs",
+     "details": "Open printer settings on your computer, view the print queue, and cancel stuck jobs."
+    },
+    {
+     "step": 3,
+     "title": "Restart the Printer",
+     "details": "Turn off the printer, wait 15 seconds, and turn it back on to test printing."
+    }
+   ]
+  },
+  {
+   "id": "tb-login",
+   "title": "Login Problem",
+   "urgency": "High",
+   "icon": "AlertTriangle",
+   "commonCauses": [
+    "Caps Lock is turned on",
+    "Incorrect username or password entered"
+   ],
+   "primarySteps": [
+    {
+     "step": 1,
+     "title": "Check Caps Lock Key",
+     "details": "Verify that Caps Lock is not accidentally turned on."
+    },
+    {
+     "step": 2,
+     "title": "Re-enter Login Details Carefully",
+     "details": "Type your full username and password slowly to prevent spelling mistakes."
+    },
+    {
+     "step": 3,
+     "title": "Use Account Recovery",
+     "details": "Follow your organization approved password recovery process or contact IT Support."
+    }
+   ]
+  },
+  {
+   "id": "tb-blackscreen",
+   "title": "Black Screen",
+   "urgency": "High",
+   "icon": "HardDrive",
+   "commonCauses": [
+    "Monitor turned off or cable loose",
+    "Graphics driver temporarily unresponsive"
+   ],
+   "primarySteps": [
+    {
+     "step": 1,
+     "title": "Check Monitor Power & Cable",
+     "details": "Confirm the monitor is powered on and the video cable is firmly connected on both ends."
+    },
+    {
+     "step": 2,
+     "title": "Wake Graphics Driver",
+     "details": "On Windows, press Windows Key + Ctrl + Shift + B to restart the display driver."
+    },
+    {
+     "step": 3,
+     "title": "Perform a Hard Reboot",
+     "details": "Hold the computer power button for 15 seconds until it powers down, then restart it."
+    }
+   ]
+  }
+ ],
+ "FAQS": [
+  {
+   "id": "faq-1",
+   "question": "What should I do if my computer is running slowly?",
+   "answer": "Save your work, restart your computer, and close applications you do not need. If the problem continues, contact IT Support.",
+   "category": "General",
+   "tags": [
+    "performance",
+    "slow",
+    "restart"
+   ]
+  },
+  {
+   "id": "faq-2",
+   "question": "What should I do if I cannot connect to Wi-Fi?",
+   "answer": "Check that Wi-Fi is enabled and that you are connecting to the correct network. If the connection still fails, contact IT Support.",
+   "category": "Network & Wi-Fi",
+   "tags": [
+    "wifi",
+    "network",
+    "connection"
+   ]
+  },
+  {
+   "id": "faq-3",
+   "question": "What should I do if my printer is not working?",
+   "answer": "Check the printer's power, paper, connection, and print queue. If it still does not print, contact IT Support.",
+   "category": "Hardware",
+   "tags": [
+    "printer",
+    "hardware",
+    "queue"
+   ]
+  },
+  {
+   "id": "faq-4",
+   "question": "What should I do if I cannot sign in?",
+   "answer": "Check your username and keyboard settings. If you still cannot sign in, follow your organization's approved account recovery process.",
+   "category": "Accounts & Access",
+   "tags": [
+    "login",
+    "account",
+    "signin"
+   ]
+  },
+  {
+   "id": "faq-5",
+   "question": "How do I request IT support?",
+   "answer": "Describe the problem, include any error message, and explain the steps you have already tried. Submit your request through the organization’s approved support channel.",
+   "category": "General",
+   "tags": [
+    "support",
+    "helpdesk",
+    "ticket"
+   ]
+  },
+  {
+   "id": "faq-6",
+   "question": "Is it safe to download software from any website?",
+   "answer": "No. Download software only from trusted official sources and follow your organization's installation policies.",
+   "category": "Security",
+   "tags": [
+    "security",
+    "download",
+    "safe"
+   ]
+  }
+ ],
+ "DOWNLOADS": [
+  {
+   "id": "dl-chrome",
+   "name": "Google Chrome",
+   "officialUrl": "https://www.google.com/chrome/",
+   "developer": "Google LLC",
+   "category": "Web Browser",
+   "os": "Windows, macOS, Linux",
+   "licenseType": "Free Official Software",
+   "description": "Fast, secure, and customizable web browser built for modern web applications.",
+   "itSupportUseCases": "Standard browser for web applications and cloud services.",
+   "featured": true
+  },
+  {
+   "id": "dl-firefox",
+   "name": "Mozilla Firefox",
+   "officialUrl": "https://www.mozilla.org/firefox/new/",
+   "developer": "Mozilla Foundation",
+   "category": "Web Browser",
+   "os": "Windows, macOS, Linux",
+   "licenseType": "Free / Open Source",
+   "description": "Privacy-focused open-source web browser with strong tracking protection.",
+   "itSupportUseCases": "Alternative high-privacy browser for diagnostic testing and web compatibility.",
+   "featured": true
+  },
+  {
+   "id": "dl-7zip",
+   "name": "7-Zip",
+   "officialUrl": "https://www.7-zip.org/",
+   "developer": "Igor Pavlov",
+   "category": "File Compression",
+   "os": "Windows, Linux",
+   "licenseType": "Free / Open Source (LGPL)",
+   "description": "High-ratio file archiver and compression utility supporting 7z, ZIP, and other archives.",
+   "itSupportUseCases": "Essential tool for compressing and decompressing archive files securely.",
+   "featured": true
+  },
+  {
+   "id": "dl-powertoys",
+   "name": "Microsoft PowerToys",
+   "officialUrl": "https://learn.microsoft.com/en-us/windows/powertoys/",
+   "developer": "Microsoft Corporation",
+   "category": "Productivity Utilities",
+   "os": "Windows 11 / 10",
+   "licenseType": "Free Official Microsoft Utility",
+   "description": "Suite of system tuning and productivity utilities to streamline and customize Windows.",
+   "itSupportUseCases": "Window management, shortcut customization, and workflow optimization.",
+   "featured": true
+  },
+  {
+   "id": "dl-powershell",
+   "name": "Microsoft PowerShell",
+   "officialUrl": "https://learn.microsoft.com/en-us/powershell/",
+   "developer": "Microsoft Corporation",
+   "category": "Automation & Command-Line",
+   "os": "Windows, macOS, Linux",
+   "licenseType": "Free / Open Source",
+   "description": "Cross-platform task automation solution consisting of a command-line shell and scripting language.",
+   "itSupportUseCases": "Automating administrative tasks, running diagnostics, and system configuration.",
+   "featured": true
+  }
+ ],
+ "VENDORS": [
+  {
+   "id": "v-microsoft",
+   "name": "Microsoft Support",
+   "category": "Software & Cloud",
+   "supportUrl": "https://support.microsoft.com/",
+   "phone": "1-800-642-7676",
+   "hours": "24/7 Online & Phone Support",
+   "notes": "Official support for Windows, Microsoft 365 apps, OneDrive, Teams, and organization accounts."
+  },
+  {
+   "id": "v-apple",
+   "name": "Apple Support",
+   "category": "Hardware",
+   "supportUrl": "https://support.apple.com/",
+   "phone": "1-800-275-2273",
+   "hours": "7:00 AM – 10:00 PM PST Daily",
+   "notes": "Official support, diagnostics, user manuals, and warranty lookups for Mac, iPad, and macOS."
+  },
+  {
+   "id": "v-dell",
+   "name": "Dell Support",
+   "category": "Hardware",
+   "supportUrl": "https://www.dell.com/support/",
+   "phone": "1-800-822-8965",
+   "hours": "24/7 Technical Support",
+   "notes": "Official drivers, diagnostics, and warranty verification for Dell desktop PCs and laptops."
+  },
+  {
+   "id": "v-hp",
+   "name": "HP Support",
+   "category": "Printers",
+   "supportUrl": "https://support.hp.com/",
+   "phone": "1-800-474-6836",
+   "hours": "Monday – Friday 8:00 AM – 8:00 PM PST",
+   "notes": "Official printer drivers, scanning utilities, and troubleshooting documentation for HP hardware."
+  },
+  {
+   "id": "v-lenovo",
+   "name": "Lenovo Support",
+   "category": "Hardware",
+   "supportUrl": "https://pcsupport.lenovo.com/",
+   "phone": "1-800-426-7378",
+   "hours": "24/7 Technical Support",
+   "notes": "Official ThinkPad drivers, system updates, and warranty checks for Lenovo devices."
+  }
+ ],
+ "TUTORIALS": [
+  {
+   "id": "error-screenshot",
+   "title": "How to Capture and Save an Error Screenshot",
+   "summary": "Learn how to quickly capture an unexpected error message using the Windows Snipping Tool, save the image file, and prepare it for an IT support ticket.",
+   "introduction": "When an application crashes or displays an error dialogue, submitting an exact visual capture of the message allows the Charlie Brown IT Support team to pinpoint the error code, DLL name, or system dialog instantly without guesswork. This guide walks you through using the built-in Windows screenshot shortcut, saving the image to your computer, and getting it ready for your support request.",
+   "category": "Windows Basics",
+   "difficulty": "Beginner",
+   "estimatedTime": "4 min read",
+   "iconName": "Camera",
+   "whatYouWillLearn": [
+    "How to invoke the Windows Snipping Tool using the keyboard shortcut (Win + Shift + S)",
+    "How to cleanly crop just the error box or dialog without capturing unrelated windows",
+    "How to save the captured image with a descriptive filename in your Pictures folder",
+    "How to prepare and attach the saved file to your Charlie Brown IT Support request"
+   ],
+   "requirements": [
+    "A computer running Windows 10 or Windows 11",
+    "The error dialog or message currently visible on your monitor",
+    "Standard keyboard and mouse or trackpad connected"
+   ],
+   "steps": [
+    {
+     "stepNumber": 1,
+     "title": "Keep the Error Message Visible on Screen",
+     "instruction": "When the error occurs, do not click \"OK\", \"Cancel\", or close the message box immediately. Clicking those buttons may dismiss the error and prevent you from capturing the exact error code.",
+     "details": [
+      "Position other windows so the error message is clearly visible in the center of your screen.",
+      "If multiple error dialogs popped up, leave them all on screen."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-1-1",
+      "label": "Screenshot Placeholder 1.1: Active Error Message Dialog",
+      "description": "Screenshot showing an active Windows error dialog (e.g., \"Word encountered an error\" with code 0x80070005) centered on the desktop before dismissing.",
+      "aspectRatio": "16:9"
+     },
+     "caution": "Do not press Enter or Escape while the error dialog is in focus, as Windows may register that as closing the dialogue."
+    },
+    {
+     "stepNumber": 2,
+     "title": "Launch the Snipping Shortcut (Windows Key + Shift + S)",
+     "instruction": "Press and hold the Windows Key, press Shift, and then press the S key on your keyboard. Release all three keys together.",
+     "details": [
+      "Your monitor will momentarily dim, and a small screenshot toolbar will appear at the top center of your display.",
+      "The first button on the toolbar (\"Rectangular Snip\") is selected by default and is ideal for cropping error boxes."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-1-2",
+      "label": "Screenshot Placeholder 1.2: Windows Snipping Tool Top Overlay",
+      "description": "Screenshot of the Windows 10/11 Snipping Tool overlay toolbar at the top of the screen showing Rectangular, Freeform, Window, and Fullscreen capture icons.",
+      "aspectRatio": "16:9"
+     },
+     "proTip": "If pressing Win + Shift + S does nothing, click the Windows Start button, type \"Snipping Tool\", and click \"New\" to start a capture manually."
+    },
+    {
+     "stepNumber": 3,
+     "title": "Click and Drag to Capture the Error Dialog",
+     "instruction": "Move your crosshair cursor just outside the top-left corner of the error box. Click and hold the left mouse button, drag across to the bottom-right corner of the error box, and release.",
+     "details": [
+      "Make sure the title bar of the dialog, the exact error number/code, and all description text fit comfortably inside the highlighted rectangle.",
+      "Once you release the mouse button, the selected area will be captured to your Windows clipboard."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-1-3",
+      "label": "Screenshot Placeholder 1.3: Dragging Selection Box Around Error Window",
+      "description": "Screenshot showing the rectangular selection box drawn around the error dialog while the surrounding background desktop remains dimmed.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 4,
+     "title": "Open the Snipping Notification and Click Save",
+     "instruction": "A rectangular notification toast will appear at the bottom-right corner of your screen stating \"Snip saved to clipboard\". Click directly on this notification to open the Snipping Tool editor.",
+     "details": [
+      "Inside the Snipping Tool editor, review the image to ensure the error text is sharp and readable.",
+      "Click the Floppy Disk / Save icon in the top-right corner of the window (or press Ctrl + S on your keyboard)."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-1-4",
+      "label": "Screenshot Placeholder 1.4: Snipping Tool Editor with Save Icon Highlighted",
+      "description": "Screenshot of the Snipping Tool application interface showing the captured error preview and a red callout ring around the Floppy Disk Save icon.",
+      "aspectRatio": "16:9"
+     },
+     "proTip": "If the notification disappears before you can click it, open Microsoft Paint or an email draft, press Ctrl + V to paste the clipboard image, and save from there."
+    },
+    {
+     "stepNumber": 5,
+     "title": "Name the File Descriptively and Choose a Destination",
+     "instruction": "In the \"Save As\" file browser window, navigate to your \"Pictures\" or \"Desktop\" folder so the file is easy to find later.",
+     "details": [
+      "Replace the default generic filename (\"Screenshot 2026-...\") with a descriptive name, such as \"Word_Error_0x80070005_Oct13.png\".",
+      "Keep the \"Save as type\" set to PNG (*.png) for clear, non-blurry text quality.",
+      "Click the \"Save\" button."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-1-5",
+      "label": "Screenshot Placeholder 1.5: Windows File Explorer Save As Dialog",
+      "description": "Screenshot of Windows File Explorer Save As dialog with the Pictures folder selected and a clear descriptive filename entered in the File name input.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 6,
+     "title": "Prepare to Attach to Your IT Support Ticket",
+     "instruction": "Now that your screenshot is saved on your computer, head to the Charlie Brown IT Support \"Contact / Support\" page to submit your inquiry.",
+     "details": [
+      "Include the screenshot filename and exact error message in your ticket description.",
+      "When an IT technician reaches out via email or Helpdesk portal, attach this saved PNG file to provide immediate visual context."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-1-6",
+      "label": "Screenshot Placeholder 1.6: Charlie Brown Support Ticket Form Reference",
+      "description": "Screenshot of the Charlie Brown IT Support ticket submission form highlighting the Description and Subject inputs with error details added.",
+      "aspectRatio": "16:9"
+     }
+    }
+   ],
+   "expectedResult": "You have a clean, high-resolution PNG image file saved in your Pictures or Desktop folder that clearly shows the exact error message, ready to be reviewed by a support technician.",
+   "commonProblems": [
+    {
+     "problem": "Pressing Windows + Shift + S does not trigger the snipping overlay.",
+     "solution": "Some keyboards have a \"Win Lock\" key (often labeled with a padlock on the Windows key) that disables the Windows key. Toggle that key off, or launch Snipping Tool directly from the Start Menu."
+    },
+    {
+     "problem": "The popup notification in the bottom-right corner disappeared too quickly.",
+     "solution": "The captured image is automatically copied to your clipboard. Open Microsoft Paint (Start > Paint), press Ctrl + V to paste it, and save the image from the File menu."
+    },
+    {
+     "problem": "The error text in the screenshot appears blurry or partially cut off.",
+     "solution": "Repeat steps 2 and 3, ensuring the crosshair begins slightly above and to the left of the error box so no borders or error codes are clipped."
+    }
+   ],
+   "safetyReminders": [
+    "Privacy Check: Before sending your screenshot, verify that background browser tabs or desktop windows do not display private personal information, passwords, financial data, or confidential student records.",
+    "Cropping Rule: Always crop tightly to the error dialogue rather than capturing your entire dual-monitor desktop whenever possible."
+   ],
+   "references": [
+    {
+     "title": "Use Snipping Tool to capture screenshots",
+     "source": "Microsoft Support Official Documentation",
+     "url": "https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b",
+     "notes": "Official Microsoft technical specification for keyboard shortcuts and image capture formats in Windows 10/11."
+    }
+   ]
+  },
+  {
+   "id": "slow-computer-task-manager",
+   "title": "How to Check Why Your Computer Is Running Slowly",
+   "summary": "Learn how to open Windows Task Manager, inspect live CPU and memory usage, and safely identify which applications are consuming your computer resources.",
+   "introduction": "A sluggish or unresponsive computer is often caused by a rogue background program hogging processor cycles or running low on available RAM memory. Windows Task Manager provides real-time diagnostics so you can see exactly which program is causing the bottleneck and safely close it before calling the Helpdesk.",
+   "category": "Troubleshooting",
+   "difficulty": "Beginner",
+   "estimatedTime": "5 min read",
+   "iconName": "Activity",
+   "whatYouWillLearn": [
+    "How to open Windows Task Manager immediately using the Ctrl + Shift + Esc shortcut",
+    "How to switch from the minimal view to the full diagnostic Processes table",
+    "How to sort running programs by CPU and Memory usage to spot resource hogs",
+    "How to safely end an unresponsive application without endangering Windows system files"
+   ],
+   "requirements": [
+    "A computer running Windows 10 or Windows 11",
+    "Standard user login access (administrator privileges not required for personal app monitoring)",
+    "Keyboard and mouse connected"
+   ],
+   "steps": [
+    {
+     "stepNumber": 1,
+     "title": "Open Windows Task Manager Instantly (Ctrl + Shift + Esc)",
+     "instruction": "Press and hold the Ctrl and Shift keys with your left hand, then press the Esc key in the top-left corner of your keyboard with your right hand.",
+     "details": [
+      "This three-key combination opens Task Manager immediately without having to navigate through the Windows security screen.",
+      "Alternative method: Right-click the Windows Start icon on your taskbar and click \"Task Manager\" from the pop-up list."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-2-1",
+      "label": "Screenshot Placeholder 2.1: Opening Task Manager via Quick Shortcut",
+      "description": "Screenshot demonstrating Task Manager launching on screen with the Ctrl + Shift + Esc keyboard shortcut overlay indicator.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 2,
+     "title": "Expand to the Detailed View (\"More details\")",
+     "instruction": "If Task Manager opens as a small, simple card showing only a list of app names, click the \"More details\" link (or expand arrow) at the bottom-left corner of the window.",
+     "details": [
+      "This reveals the complete diagnostic table with columns for CPU, Memory, Disk, Network, and GPU usage.",
+      "In Windows 11, the view is structured with left-hand navigation tabs; ensure you are on the \"Processes\" tab (the top icon)."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-2-2",
+      "label": "Screenshot Placeholder 2.2: Task Manager Compact vs. Detailed Processes View",
+      "description": "Side-by-side comparison screenshot showing the compact Task Manager dialog and the full table view after clicking \"More details\".",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 3,
+     "title": "Inspect and Sort by CPU Usage",
+     "instruction": "Locate the \"CPU\" column header at the top of the processes list. Click once on the word \"CPU\" to sort the table in descending order so the highest percentage appears at the top.",
+     "details": [
+      "Normal idle behavior: The total CPU usage across the system should typically fluctuate between 2% and 25%.",
+      "High utilization indicator: If a single non-essential app (like a web browser or background updater) is constantly utilizing 70% to 100% of your CPU, it is the primary reason your computer feels sluggish."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-2-3",
+      "label": "Screenshot Placeholder 2.3: Task Manager Sorted by CPU Column",
+      "description": "Screenshot of the Task Manager Processes tab sorted in descending order by the CPU column, showing an app utilizing high CPU highlighted in amber/red.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 4,
+     "title": "Check Memory (RAM) Consumption",
+     "instruction": "Click on the \"Memory\" column header to sort running programs by their RAM consumption.",
+     "details": [
+      "Web browsers with 30+ open tabs, photo editing software, or virtual meeting tools often consume multiple gigabytes (GB) of RAM.",
+      "If the overall Memory bar at the top exceeds 90%, closing unused browser tabs or secondary applications will instantly free up breathing room for your computer."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-2-4",
+      "label": "Screenshot Placeholder 2.4: Processes Sorted by Memory Column",
+      "description": "Screenshot displaying the Memory column sorted descending, showing browser helper processes consuming significant megabytes/gigabytes of RAM.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 5,
+     "title": "Safely End an Unresponsive or Frozen Application",
+     "instruction": "If a user application shows \"(Not Responding)\" or is consuming excessive resources without doing any active work: click once on the application name to select it, then click the \"End task\" button.",
+     "details": [
+      "In Windows 10, \"End task\" is located in the bottom-right corner of Task Manager.",
+      "In Windows 11, \"End task\" is located in the top command bar.",
+      "Give Windows 5 to 10 seconds to terminate the stuck process."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-2-5",
+      "label": "Screenshot Placeholder 2.5: Selecting App and Clicking End Task",
+      "description": "Screenshot highlighting a frozen user application in the list with a red callout indicator pointing to the \"End task\" button.",
+      "aspectRatio": "16:9"
+     },
+     "caution": "Safety Rule: Only end applications that you recognize under the \"Apps\" heading (such as Word, Excel, Chrome, or Teams). Never terminate processes under \"Windows processes\" (such as System, Explorer, or Host Process) as doing so may cause an abrupt reboot."
+    },
+    {
+     "stepNumber": 6,
+     "title": "Verify System Recovery",
+     "instruction": "Observe the overall CPU and Memory percentages at the top of the Task Manager table. If they drop down to normal levels (under 40%), test your system by opening a standard document or browser tab.",
+     "details": [
+      "If performance returns to normal, you may close Task Manager.",
+      "If the CPU or Disk continues to stay at 100% despite closing all user apps, save your work and perform a standard reboot (Start > Power > Restart)."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-2-6",
+      "label": "Screenshot Placeholder 2.6: Normalized Task Manager Performance Overview",
+      "description": "Screenshot of the Task Manager Performance tab showing healthy CPU and memory utilization graphs under 30%.",
+      "aspectRatio": "16:9"
+     }
+    }
+   ],
+   "expectedResult": "You will identify the specific application causing high CPU or memory load, safely terminate it, and restore normal operational speed to your workstation.",
+   "commonProblems": [
+    {
+     "problem": "Clicking \"End task\" results in an \"Access is denied\" error message.",
+     "solution": "The process is a protected Windows service or campus security agent managed by organization policy. Save any open documents and perform a standard computer restart."
+    },
+    {
+     "problem": "The Disk column shows 100% usage, but CPU and Memory are low.",
+     "solution": "Windows Update or Windows Defender may be conducting a scheduled background drive integrity check. Allow 15–20 minutes for the scan to conclude before rebooting."
+    }
+   ],
+   "safetyReminders": [
+    "Unsaved Data: Forcibly ending a program via \"End task\" will discard any unsaved edits in that specific application. Only use it when the program is truly frozen and refusing to close normally.",
+    "Windows Processes: Avoid touching any background item with a Windows logo or gear icon unless specifically directed by an IT Helpdesk technician."
+   ],
+   "references": [
+    {
+     "title": "Using Task Manager in Windows",
+     "source": "Microsoft Learn Support Documentation",
+     "url": "https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/use-task-manager-to-troubleshoot",
+     "notes": "Authoritative Microsoft reference for process monitoring and system resource triage."
+    }
+   ]
+  },
+  {
+   "id": "clear-stuck-print-job",
+   "title": "How to Clear a Stuck Print Job",
+   "summary": "Step-by-step instructions to open Windows printer settings, view your active print queue, cancel a stuck document, and restore normal printing.",
+   "introduction": "When a document is corrupted, contains unsupported fonts, or the printer momentarily loses communication mid-stream, print jobs can get trapped in the Windows print queue. Once a job is stuck, all subsequent documents queued behind it will not print. This guide shows you how to clear the stuck job and resume printing smoothly.",
+   "category": "Hardware Support",
+   "difficulty": "Beginner",
+   "estimatedTime": "4 min read",
+   "iconName": "Printer",
+   "whatYouWillLearn": [
+    "How to navigate to Windows Printer Settings quickly",
+    "How to open and inspect the active Print Queue dialog",
+    "How to cancel an individual stuck or \"Error - Printing\" document",
+    "How to send a clean diagnostic test page to confirm the printer is working"
+   ],
+   "requirements": [
+    "A computer connected to a local USB desk printer or campus network printer",
+    "Printer powered ON with paper loaded in the tray and no flashing error LEDs",
+    "Standard Windows user account"
+   ],
+   "steps": [
+    {
+     "stepNumber": 1,
+     "title": "Open Windows Printer Settings",
+     "instruction": "Press the Windows Key + I to open Windows Settings. In the left-hand navigation menu, click \"Bluetooth & devices\", then select \"Printers & scanners\".",
+     "details": [
+      "Windows will display a list of all printers installed on your computer.",
+      "Shortcut: You can also open the Start menu, type \"Printers\", and press Enter."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-3-1",
+      "label": "Screenshot Placeholder 3.1: Windows Settings - Printers & Scanners Screen",
+      "description": "Screenshot of the Windows 10/11 Settings app displaying the Printers & Scanners device list with installed campus and local printers.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 2,
+     "title": "Select Your Assigned Printer",
+     "instruction": "Find and click on the name of the printer you are trying to print to (for example, \"CharlieBrown-FollowMe-Print\" or your designated office printer).",
+     "details": [
+      "Clicking the printer name opens its dedicated management options screen.",
+      "Verify that the printer status displays as \"Idle\" or \"Open print queue\" rather than \"Driver unavailable\"."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-3-2",
+      "label": "Screenshot Placeholder 3.2: Dedicated Printer Management Screen",
+      "description": "Screenshot showing the specific printer properties view with the \"Open print queue\" button prominently displayed.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 3,
+     "title": "Open the Print Queue",
+     "instruction": "Click the \"Open print queue\" button near the top of the printer management screen.",
+     "details": [
+      "A separate queue window will open, displaying a table with columns for Document Name, Status, Owner, Pages, Size, and Submitted time.",
+      "Look for the document at the very top of the list displaying a status such as \"Error - Printing\", \"Deleting...\", or \"Sent to printer\"."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-3-3",
+      "label": "Screenshot Placeholder 3.3: Active Print Queue Window with Stuck File",
+      "description": "Screenshot of the Windows Print Queue dialog window showing a document stuck with the status \"Error - Printing\" at the top of the list.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 4,
+     "title": "Cancel the Stuck Document",
+     "instruction": "Right-click directly on the stuck document at the top of the queue and select \"Cancel\" from the context menu.",
+     "details": [
+      "A confirmation box will appear asking: \"Are you sure you want to cancel the print job?\". Click \"Yes\".",
+      "If there are multiple duplicate jobs queued behind it, you can also click the \"Printer\" menu at the top left of the queue window and select \"Cancel All Documents\"."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-3-4",
+      "label": "Screenshot Placeholder 3.4: Right-Clicking Document to Cancel",
+      "description": "Screenshot showing the right-click menu over the stuck document with cursor hovering over the \"Cancel\" option.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 5,
+     "title": "Wait for the Queue to Clear (or Power Cycle the Printer)",
+     "instruction": "Allow 30 to 60 seconds for Windows to communicate with the printer hardware and flush the spool buffer.",
+     "details": [
+      "The document status may say \"Deleting...\" briefly before vanishing from the list.",
+      "If the job remains stuck after 60 seconds, turn off the physical printer using its power button, wait 15 seconds, and turn it back on. This resets the printer memory cache."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-3-5",
+      "label": "Screenshot Placeholder 3.5: Empty Print Queue Confirming Cleared Spool",
+      "description": "Screenshot of the Print Queue window showing \"0 documents in queue\" with a clean white list area.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 6,
+     "title": "Print a Test Page to Verify",
+     "instruction": "Return to the printer management screen in Windows Settings and click \"Print test page\".",
+     "details": [
+      "If the test page prints properly, your print spooler communication is fully operational.",
+      "You may now re-open your original document and send the print job again."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-3-6",
+      "label": "Screenshot Placeholder 3.6: \"Print test page\" Button in Windows Settings",
+      "description": "Screenshot showing the \"Print test page\" link under printer settings with a confirmation notification appearing.",
+      "aspectRatio": "16:9"
+     }
+    }
+   ],
+   "expectedResult": "The stuck print job is removed from the Windows print queue, the spooler is unlocked, and your printer resumes accepting new print requests normally.",
+   "commonProblems": [
+    {
+     "problem": "The document shows \"Deleting...\" forever and will not leave the queue.",
+     "solution": "Restart the Windows Print Spooler service: Press Windows Key + R, type \"services.msc\", scroll to \"Print Spooler\", right-click it, and select \"Restart\". The stuck job will clear immediately."
+    },
+    {
+     "problem": "The test page prints, but your original PDF or Word file gets stuck again.",
+     "solution": "The specific file may have corrupted fonts or complex embedded images. In Adobe Acrobat or Word, try choosing \"Print as Image\" in the advanced print settings."
+    }
+   ],
+   "safetyReminders": [
+    "Paper Jam Precaution: If clearing the print queue was triggered by a paper jam, open the printer access door gently and pull trapped paper in the direction of the paper feed path to prevent damaging internal rollers.",
+    "Consumables: Check toner and paper levels on the physical printer LCD screen before sending large multi-page print batches."
+   ],
+   "references": [
+    {
+     "title": "Fix printer connection and printing problems in Windows",
+     "source": "Microsoft Windows Support Official Documentation",
+     "url": "https://support.microsoft.com/en-us/windows/fix-printer-problems-in-windows-bf832c0f-0746-48c0-848e-d98c5643440d",
+     "notes": "Official guidelines for clearing print spool queues and troubleshooting print subsystem faults."
+    }
+   ]
+  },
+  {
+   "id": "diagnose-reconnect-wifi",
+   "title": "How to Diagnose and Reconnect to Wi-Fi",
+   "summary": "Learn how to inspect your wireless network settings, forget and reconnect to the official Charlie Brown Organization network, and verify your connection.",
+   "introduction": "Wireless connectivity problems—such as intermittent signal drops, \"No Internet, Secured\" alerts, or failure to obtain an IP address—can interrupt coursework and daily office tasks. This tutorial guides you through diagnosing your wireless adapter status, clearing cached network credentials, and re-authenticating with the secure campus network.",
+   "category": "Network Support",
+   "difficulty": "Beginner",
+   "estimatedTime": "5 min read",
+   "iconName": "Wifi",
+   "whatYouWillLearn": [
+    "How to check Wi-Fi adapter power and Airplane Mode status in Quick Settings",
+    "How to connect to the official CharlieBrown-Secure organization network",
+    "How to \"Forget\" a corrupted or expired saved network profile",
+    "How to test end-to-end internet connectivity using standard verification tests"
+   ],
+   "requirements": [
+    "A laptop, tablet, or desktop equipped with a functional Wi-Fi adapter",
+    "Your Charlie Brown Organization email address and active password",
+    "Being within physical range of a campus or home Wi-Fi access point"
+   ],
+   "steps": [
+    {
+     "stepNumber": 1,
+     "title": "Check the Wi-Fi Status in Windows Quick Settings",
+     "instruction": "Click the cluster of icons (Network, Sound, Battery) in the bottom-right corner of your Windows taskbar, or press the Windows Key + A shortcut.",
+     "details": [
+      "Verify that the Wi-Fi icon is illuminated (turned ON). If it is grayed out, click it once to turn Wi-Fi on.",
+      "Verify that \"Airplane mode\" is turned OFF. If Airplane mode is active, it shuts off all wireless radio antennas."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-4-1",
+      "label": "Screenshot Placeholder 4.1: Windows Quick Settings Action Center Panel",
+      "description": "Screenshot of the Windows 10/11 Quick Settings flyout panel with Wi-Fi toggled ON in blue and Airplane Mode toggled OFF.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 2,
+     "title": "Select the Official Organization Network",
+     "instruction": "Click the arrow (\">\") next to the Wi-Fi toggle icon in Quick Settings to view all available networks in range.",
+     "details": [
+      "Select the official organization network: \"CharlieBrown-Secure\" (or your home network if working remotely).",
+      "Check the box labeled \"Connect automatically\".",
+      "Click the \"Connect\" button."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-4-2",
+      "label": "Screenshot Placeholder 4.2: Available Wireless Networks List",
+      "description": "Screenshot of the available wireless networks flyout highlighting \"CharlieBrown-Secure\" with the \"Connect automatically\" checkbox checked.",
+      "aspectRatio": "16:9"
+     },
+     "caution": "Do not connect to untrusted open networks (such as \"Free Public Wi-Fi\" or unrecognized hotspots) when handling organizational data."
+    },
+    {
+     "stepNumber": 3,
+     "title": "Enter Your Charlie Brown Organization Credentials",
+     "instruction": "When prompted by Windows security, enter your full institutional username (e.g., yourname@charliebrown-org.edu) and your current account password.",
+     "details": [
+      "Do not enter just your firstname; institutional WPA2/WPA3 Enterprise networks require your full organization email identity.",
+      "If a prompt appears asking \"Continue connecting? Windows cannot verify the server identity\", check that the server name indicates charliebrown-org.edu, then click \"Connect\"."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-4-3",
+      "label": "Screenshot Placeholder 4.3: Windows 802.1X Enterprise Credential Prompt",
+      "description": "Screenshot of the Windows network sign-in prompt requesting User name and Password for campus Enterprise authentication.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 4,
+     "title": "Forget the Network if Authentication Fails",
+     "instruction": "If Windows states \"Can't connect to this network\" or keeps looping on authentication, an outdated password or stale certificate is likely cached.",
+     "details": [
+      "Open Settings (Windows Key + I) > \"Network & internet\" > \"Wi-Fi\".",
+      "Click \"Manage known networks\".",
+      "Find \"CharlieBrown-Secure\" in the list and click the \"Forget\" button next to it.",
+      "Once forgotten, return to Step 2 to establish a fresh connection with your current password."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-4-4",
+      "label": "Screenshot Placeholder 4.4: Windows Settings - Manage Known Networks",
+      "description": "Screenshot of the Manage Known Networks settings page showing the \"Forget\" button next to saved Wi-Fi network profiles.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 5,
+     "title": "Flush DNS and Renew IP Address (Quick Command)",
+     "instruction": "If you are connected but see \"No Internet, Secured\", reset your computer's network routing table.",
+     "details": [
+      "Press the Windows Key, type \"cmd\", and press Enter to open the Command Prompt.",
+      "Type \"ipconfig /flushdns\" and press Enter. You will see \"Successfully flushed the DNS Resolver Cache\".",
+      "Next, type \"ipconfig /renew\" and press Enter to request a fresh IP address from the campus DHCP server."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-4-5",
+      "label": "Screenshot Placeholder 4.5: Command Prompt Executing ipconfig /flushdns",
+      "description": "Screenshot of the Windows Command Prompt terminal window showing successful execution of ipconfig /flushdns and ipconfig /renew commands.",
+      "aspectRatio": "16:9"
+     }
+    },
+    {
+     "stepNumber": 6,
+     "title": "Test Your Internet Connection",
+     "instruction": "Open your web browser (Edge, Chrome, or Firefox) and navigate to an external website such as https://charliebrown-org.edu or a search engine.",
+     "details": [
+      "If web pages load immediately and the network icon in your taskbar shows a full solid Wi-Fi arc, your connection is fully functional.",
+      "If you still cannot connect, submit a Helpdesk ticket or visit the walk-in counter with your device tag number."
+     ],
+     "screenshotPlaceholder": {
+      "id": "ss-4-6",
+      "label": "Screenshot Placeholder 4.6: Successful Web Browser Connectivity Test",
+      "description": "Screenshot of the web browser loading the Charlie Brown IT Support portal confirming active internet connectivity.",
+      "aspectRatio": "16:9"
+     }
+    }
+   ],
+   "expectedResult": "Your computer establishes an encrypted, authenticated Wi-Fi connection with full internet access and automatic reconnection enabled.",
+   "commonProblems": [
+    {
+     "problem": "The Wi-Fi option does not appear at all in Windows Quick Settings or Settings.",
+     "solution": "Your Wi-Fi network card may have entered a power-saving sleep state, or a physical laptop switch was bumped. Check for a physical Wi-Fi toggle on your laptop, or perform a clean restart via Start > Power > Restart."
+    },
+    {
+     "problem": "You recently changed your campus account password, and Wi-Fi refuses to connect.",
+     "solution": "Windows is still trying to authenticate using your previous password. Use Step 4 to \"Forget\" the network, then reconnect and enter your new password."
+    },
+    {
+     "problem": "Signal strength is only 1 bar and disconnects frequently.",
+     "solution": "You may be near the boundary of the access point coverage. Move closer to the nearest indoor access point or hallway ceiling transmitter."
+    }
+   ],
+   "safetyReminders": [
+    "Credential Protection: Never share your organization password with classmates or colleagues to let them connect their personal devices.",
+    "Encrypted Portals: Always verify the padlock icon in your web browser address bar when logging into campus services over Wi-Fi."
+   ],
+   "references": [
+    {
+     "title": "Fix Wi-Fi connection issues in Windows",
+     "source": "Microsoft Windows Support Official Documentation",
+     "url": "https://support.microsoft.com/en-us/windows/fix-wi-fi-connection-issues-in-windows-9b725511-1b2a-4642-8d13-fe02d51029c9",
+     "notes": "Official troubleshooting instructions for wireless network adapter diagnostic workflows."
+    }
+   ]
+  }
+ ]
+};
+</script>
+  <script>/* Charlie Brown IT Support Portal - plain JavaScript version (no build step). */
+(function () {
+  const D = window.DATA;
+  const icons = () => { try { if (window.lucide) window.lucide.createIcons(); } catch (e) {} };
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const ic = (n, c = '') => `<i data-lucide="${n}" class="${c}"></i>`;
+  const nowT = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const ICONS = { Power: 'power', Monitor: 'monitor', Printer: 'printer', Mouse: 'mouse', Usb: 'usb', AppWindow: 'app-window', Mail: 'mail', Lock: 'lock', Download: 'download', HardDrive: 'hard-drive', Gauge: 'gauge', WifiOff: 'wifi-off', AlertTriangle: 'triangle-alert', Camera: 'camera', Activity: 'activity', Wifi: 'wifi' };
+  const iconOf = (n, d) => ICONS[n] || d;
+
+  const NAV = [
+    ['home', 'Home', 'house'], ['hardware', 'Hardware Support', 'hard-drive'], ['software', 'Software Support', 'app-window'],
+    ['troubleshooting', 'Troubleshooting', 'circle-alert'], ['faqs', 'FAQs', 'circle-help'], ['tutorials', 'Tutorials', 'book-open'],
+    ['downloads', 'Downloads', 'download'], ['vendors', 'Vendor Support', 'building-2'], ['contact', 'Contact / Support', 'headphones'],
+  ].map(([id, label, icon]) => ({ id, label, icon }));
+  const TITLES = Object.fromEntries(NAV.map((n) => [n.id, n.label]));
+  TITLES.contact = 'Contact / Support';
+
+  const S = { page: 'home', target: undefined, menu: false, searchOpen: false, chatOpen: false, chatInput: '',
+    chatMsgs: [{ from: 'bot', text: 'Hello! Welcome to Charlie Brown IT Support. How can I assist you with your hardware or software issue today?', time: 'Just now' }] };
+  let P = {}; // state of the current page
+
+  /* ---------- helpers ---------- */
+  const pageHead = (t, sub) => `<div class="border-b border-slate-200 pb-5"><h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">${t}</h1><p class="text-sm sm:text-base text-slate-600 mt-1.5 max-w-3xl leading-relaxed">${sub}</p></div>`;
+  const nav = (p, t, cls, inner, extra = '') => `<button data-nav="${p}" ${t ? `data-target="${t}"` : ''} class="${cls}" ${extra}>${inner}</button>`;
+  const safety = (txt) => `<div class="p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl flex items-start sm:items-center gap-3.5 text-xs sm:text-sm text-slate-700">${ic('shield-check', 'w-5 h-5 text-emerald-600 shrink-0 mt-0.5 sm:mt-0')}<p class="leading-relaxed">${txt}</p></div>`;
+  const cardBtn = 'w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-xs transition-colors';
+  const tipBox = (t) => `<div class="flex items-start gap-3 p-3.5 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900">${ic('lightbulb', 'w-4 h-4 text-amber-600 shrink-0 mt-0.5')}<p class="leading-relaxed"><strong>Helpful Tip:</strong> ${esc(t)}</p></div>`;
+  const stepList = (steps, color) => `<div class="space-y-3">${steps.map((s, i) => `<div class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 bg-white"><span class="w-6 h-6 rounded-full bg-${color}-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">${i + 1}</span><div class="space-y-1 text-xs sm:text-sm"><h4 class="font-bold text-slate-900">${esc(s.title)}</h4><p class="text-slate-600 leading-relaxed">${esc(s.description)}</p></div></div>`).join('')}</div>`;
+
+  /* ---------- header / breadcrumb / footer ---------- */
+  function renderHeader() {
+    const link = (n, mobile) => {
+      const a = S.page === n.id;
+      return mobile
+        ? `<button data-nav="${n.id}" id="mobile-nav-link-${n.id}" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-left ${a ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'}"><div class="flex items-center gap-3">${ic(n.icon, 'w-4 h-4 ' + (a ? 'text-blue-600' : 'text-slate-400'))}<span>${n.label}</span></div>${a ? ic('circle-check', 'w-4 h-4 text-blue-600') : ''}</button>`
+        : `<button data-nav="${n.id}" id="nav-link-${n.id}" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold tracking-normal whitespace-nowrap transition-colors ${a ? 'text-blue-700 bg-blue-50 border border-blue-200/60' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 border border-transparent'}">${ic(n.icon, 'w-3.5 h-3.5 ' + (a ? 'text-blue-600' : 'text-slate-400'))}<span>${n.label}</span></button>`;
+    };
+    $('#hdr').innerHTML = `
+    <div class="bg-slate-900 text-slate-100 text-xs py-1.5 px-4 sm:px-6"><div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2"><span class="font-semibold tracking-wide text-blue-300">${D.ORG_NAME}</span><span class="text-slate-500 hidden sm:inline">•</span><span class="text-slate-300 hidden sm:inline">CIS 285 End User Training &amp; Support • UFV</span></div>
+      <div class="flex items-center gap-4"><div class="flex items-center gap-1.5 text-emerald-400"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span><span class="font-medium text-[11px] text-slate-200">IT Systems: <span class="text-emerald-300">Operational</span></span></div>
+      <span class="text-slate-600 hidden md:inline">|</span><span class="text-slate-300 hidden md:inline">Help Desk: ${D.PHONE}</span></div></div></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex items-center justify-between gap-4">
+        <button id="brand-home-button" data-nav="home" class="flex items-center gap-3 text-left focus:outline-hidden group"><div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-xs group-hover:bg-blue-700 transition-colors">${ic('wrench', 'w-5 h-5 text-white')}</div><div><div class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">${D.APP_TITLE}</div><div class="text-xs text-slate-500 font-medium">Official Tech Support Portal</div></div></button>
+        <div class="hidden md:flex flex-1 max-w-md mx-6"><button id="header-search-bar" data-act="open-search" class="w-full flex items-center justify-between px-3.5 py-2 text-sm text-slate-500 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors shadow-xs"><div class="flex items-center gap-2">${ic('search', 'w-4 h-4 text-slate-400')}<span>Search support guides, errors, hardware...</span></div><kbd class="hidden lg:inline-block px-2 py-0.5 text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 rounded shadow-2xs">Ctrl + K</kbd></button></div>
+        <div class="flex items-center gap-2.5">
+          <button id="mobile-search-button" data-act="open-search" class="md:hidden p-2 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-colors" aria-label="Open Search">${ic('search', 'w-5 h-5')}</button>
+          <button id="submit-ticket-header-button" data-nav="contact" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-2xs transition-colors">${ic('circle-plus', 'w-4 h-4')}<span class="hidden sm:inline">Submit Ticket</span><span class="sm:hidden">Ticket</span></button>
+          <button id="mobile-menu-toggle" data-act="toggle-menu" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" aria-label="Toggle Navigation Menu">${ic(S.menu ? 'x' : 'menu', 'w-6 h-6')}</button>
+        </div></div>
+      <nav class="hidden lg:flex items-center gap-1 mt-2.5 pt-2 border-t border-slate-100 overflow-x-auto">${NAV.map((n) => link(n, false)).join('')}</nav>
+    </div>
+    ${S.menu ? `<div class="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-1 shadow-lg max-h-[80vh] overflow-y-auto"><div class="mb-3 px-2"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Support Navigation</p></div>${NAV.map((n) => link(n, true)).join('')}<div class="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-2"><div class="p-3 bg-slate-50 rounded-lg text-xs text-slate-600"><span class="font-semibold text-slate-900 block mb-0.5">Need immediate assistance?</span>Call the IT Helpdesk at <span class="font-bold text-blue-700">${D.PHONE}</span> or visit Charlie Brown Hall, Suite 204.</div></div></div>` : ''}`;
+  }
+
+  function renderCrumb() {
+    $('#crumb').innerHTML = S.page === 'home' ? '' : `<div class="bg-white border-b border-slate-200 py-2.5 px-4 sm:px-6 text-xs text-slate-500"><div class="max-w-7xl mx-auto flex items-center gap-1.5 flex-wrap"><button data-nav="home" class="flex items-center gap-1 hover:text-blue-600 transition-colors">${ic('house', 'w-3.5 h-3.5')}<span>Home</span></button>${ic('chevron-right', 'w-3 h-3 text-slate-400')}<span class="font-semibold text-slate-800">${TITLES[S.page]}</span></div></div>`;
+  }
+
+  function renderFooter() {
+    const fl = (p, t) => `<li><button data-nav="${p}" class="hover:text-blue-400 transition-colors text-left">${t}</button></li>`;
+    const h4 = 'text-xs font-bold uppercase tracking-wider text-slate-200 mb-3.5';
+    $('#ftr').innerHTML = `
+    <div class="border-b border-slate-800/80 bg-slate-950/60 py-6 px-4 sm:px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">${ic('life-buoy', 'w-5 h-5')}</div><div><p class="text-sm font-semibold text-white">Urgent Hardware Emergency</p><p class="text-xs text-slate-400">Call the Help Desk dispatch hotline directly for immediate priority dispatch.</p></div></div>
+      <div class="flex items-center gap-3"><a id="footer-call-hotline" href="tel:${D.PHONE.replace(/[^0-9]/g, '')}" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors">${ic('phone', 'w-3.5 h-3.5')}<span>Call ${D.PHONE}</span></a>
+      <button id="footer-submit-ticket-cta" data-nav="contact" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs font-semibold rounded-lg border border-slate-700 transition-colors"><span>Submit Web Ticket</span></button></div></div></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="space-y-3"><div class="flex items-center gap-2.5"><div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">${ic('wrench', 'w-4 h-4')}</div><span class="font-bold text-base text-white tracking-tight">${D.APP_TITLE}</span></div>
+        <p class="text-xs text-slate-400 leading-relaxed">Providing accessible, clear, and beginner-friendly technical support resources for students, faculty, and administrative staff at <strong class="text-slate-200">${D.ORG_NAME}</strong>.</p>
+        <div class="pt-2 text-xs text-slate-400 space-y-1"><p class="font-semibold text-slate-300">Course &amp; Academic Attribution:</p><p>CIS 285 End User Training and Support</p><p class="text-slate-500">University of the Fraser Valley (UFV)</p></div></div>
+      <div><h4 class="${h4}">Self-Service Hub</h4><ul class="space-y-2 text-xs">${fl('hardware', 'Hardware Support (Power, Display, Keyboard, Mouse, Printer)')}${fl('software', 'Software Support (Word, Excel, Browsers, Antivirus)')}${fl('troubleshooting', 'Troubleshooting (Slow PC, Freezing, BSOD)')}${fl('tutorials', 'Tutorials (Password, MFA, Wi-Fi Setup)')}${fl('faqs', 'Frequently Asked Questions (FAQs)')}</ul></div>
+      <div><h4 class="${h4}">Resources &amp; Tools</h4><ul class="space-y-2 text-xs">${fl('downloads', 'Free IT Software &amp; Utilities Catalog')}${fl('vendors', 'Authorized Vendor Directory (Dell, Sony, Asus, Acer)')}${fl('contact', 'Check Support Ticket Status')}</ul></div>
+      <div class="space-y-3"><h4 class="${h4}">IT Help Desk Office</h4><div class="space-y-2 text-xs text-slate-400">
+        <div class="flex items-start gap-2">${ic('map-pin', 'w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5')}<span>${D.LOCATION}</span></div>
+        <div class="flex items-start gap-2">${ic('clock', 'w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5')}<span>${D.HOURS}</span></div>
+        <div class="flex items-center gap-2">${ic('phone', 'w-3.5 h-3.5 text-blue-400 shrink-0')}<a href="tel:${D.PHONE}" class="hover:text-white transition-colors">${D.PHONE}</a></div>
+        <div class="flex items-center gap-2">${ic('mail', 'w-3.5 h-3.5 text-blue-400 shrink-0')}<a href="mailto:${D.EMAIL}" class="hover:text-white transition-colors">${D.EMAIL}</a></div></div>
+        <div class="pt-2"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-[11px] border border-slate-700">${ic('shield-check', 'w-3.5 h-3.5 text-emerald-400')}Verified Campus IT Portal</span></div></div></div>
+      <div class="mt-10 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3"><p>&copy; ${new Date().getFullYear()} ${D.ORG_NAME}. All technical support resources and trademarks belong to their respective holders.</p><div class="flex items-center gap-4 text-[11px]"><span>CIS 285 Project (UFV)</span><span>•</span><span>End User Training &amp; Support</span><span>•</span><span>Privacy &amp; Compliance</span></div></div></div>`;
+  }
+
+  /* ---------- pages ---------- */
+  function home() {
+    const cards = [
+      ['hardware', 'hard-drive', 'blue', 'Hardware Support', 'Troubleshoot power issues, blank monitors, printers, keyboards, and mice.', 'View Hardware Guides'],
+      ['software', 'app-window', 'indigo', 'Software Support', 'Fix frozen applications, email problems, sign-in errors, and file saving.', 'View Software Guides'],
+      ['troubleshooting', 'circle-alert', 'amber', 'Troubleshooting', 'Simple solutions for slow computers, dropped Wi-Fi, login errors, and blank screens.', 'View Common Issues'],
+      ['tutorials', 'book-open', 'purple', 'Our Tutorials', 'Step-by-step guides created by our team for screenshots, slow PCs, and Wi-Fi.', 'Read Team Guides'],
+      ['contact', 'headphones', 'emerald', 'Contact Support', 'Reach out to our campus helpdesk or submit a demonstration assistance request.', 'Get Direct Help'],
+    ];
+    const chips = [['Slow Computer', 'troubleshooting', 'tb-slow'], ['Wi-Fi Reconnect', 'tutorials', 'diagnose-reconnect-wifi'], ['Printer Help', 'hardware', 'hw-printer'], ['Error Screenshots', 'tutorials', 'error-screenshot'], ['Contact IT', 'contact', '']];
+    return `<div class="space-y-10 pb-12">
+    <section class="relative bg-gradient-to-b from-blue-900 via-slate-900 to-slate-900 text-white rounded-3xl overflow-hidden shadow-xl border border-slate-800">
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+      <div class="relative max-w-4xl mx-auto px-6 py-10 sm:py-14 text-center space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold">${ic('sparkles', 'w-3.5 h-3.5 text-blue-400')}<span>Charlie Brown IT Support Portal • ${D.ORG_NAME}</span></div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-200">${D.APP_TITLE}</span></h1>
+        <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">Your central helpdesk for beginner-friendly troubleshooting guides, hardware and software assistance, and IT support.</p>
+        <div class="max-w-xl mx-auto pt-2">
+          <form id="hero-search-form" class="relative flex items-center bg-white rounded-2xl shadow-xl p-1.5 border border-slate-200 text-slate-900">${ic('search', 'w-5 h-5 text-blue-600 ml-3 shrink-0')}<input id="hero-search-input" type="text" placeholder="Search troubleshooting guides, tutorials, or topics..." class="w-full px-3 py-2 text-sm sm:text-base focus:outline-hidden text-slate-900 placeholder:text-slate-400" /><button id="hero-search-button" type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors shrink-0 shadow-xs">Search</button></form>
+          <div class="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs text-slate-400"><span class="font-medium text-slate-300">Quick links:</span>${chips.map((c) => nav(c[1], c[2], 'px-2.5 py-1 bg-slate-800/80 hover:bg-blue-600 hover:text-white text-slate-300 rounded-md border border-slate-700 transition-colors', c[0])).join('')}</div>
+        </div></div></section>
+    <section class="space-y-4"><div class="border-b border-slate-200 pb-3"><h2 class="text-xl font-bold text-slate-900 tracking-tight">Support Categories</h2><p class="text-xs sm:text-sm text-slate-500 mt-0.5">Choose a section to view simple guides or get in touch with our team.</p></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">${cards.map(([p, i, c, t, d, l]) => nav(p, '', `group p-5 bg-white rounded-2xl border border-slate-200 hover:border-${c}-400 shadow-xs hover:shadow-md transition-all text-left flex flex-col justify-between`, `<div><div class="w-10 h-10 rounded-xl bg-${c}-50 text-${c}-600 flex items-center justify-center mb-3 group-hover:bg-${c}-600 group-hover:text-white transition-colors">${ic(i, 'w-5 h-5')}</div><h3 class="font-bold text-slate-900 group-hover:text-${c}-600 transition-colors text-sm sm:text-base">${t}</h3><p class="text-xs text-slate-500 mt-1.5 leading-relaxed">${d}</p></div><div class="mt-4 pt-3 border-t border-slate-100 flex items-center text-xs font-semibold text-${c}-600 group-hover:translate-x-1 transition-transform"><span>${l}</span>${ic('chevron-right', 'w-4 h-4 ml-1')}</div>`, `id="quick-card-${p}"`)).join('')}</div></section>
+    <section class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-800"><div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div class="space-y-2"><h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Need Direct Assistance?</h2><p class="text-sm text-slate-300 max-w-xl leading-relaxed">If self-service troubleshooting does not solve your issue, our IT Helpdesk team is available to help.</p></div>
+      <div class="flex flex-wrap sm:flex-nowrap items-center gap-4"><div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700 text-xs space-y-1"><div class="flex items-center gap-2 text-blue-300 font-semibold">${ic('phone', 'w-3.5 h-3.5')}<span>${D.PHONE}</span></div><div class="flex items-center gap-2 text-slate-400">${ic('clock', 'w-3.5 h-3.5')}<span>${D.HOURS}</span></div><div class="flex items-center gap-2 text-slate-400">${ic('map-pin', 'w-3.5 h-3.5')}<span>${D.LOCATION}</span></div></div>
+      ${nav('contact', '', 'px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors shadow-xs shrink-0', 'Contact IT Support &rarr;')}</div></div></section></div>`;
+  }
+
+  function hardware() {
+    const cur = D.HARDWARE.find((i) => i.id === P.sel) || D.HARDWARE[0];
+    return `<div class="space-y-8 pb-12">${pageHead('Hardware Support', 'Simple troubleshooting steps for common computer equipment, monitors, printers, and accessories.')}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4 space-y-2"><p class="text-xs font-bold uppercase tracking-wider text-slate-400 px-1 mb-2">Common Hardware Issues</p><div class="space-y-1.5">
+        ${D.HARDWARE.map((i) => { const s = i.id === cur.id; return `<button id="hw-btn-${i.id}" data-act="pick" data-id="${i.id}" class="w-full flex items-center justify-between p-3.5 rounded-xl text-left transition-all border ${s ? 'bg-blue-600 text-white border-blue-600 shadow-xs font-semibold' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300'}"><div class="flex items-center gap-3 min-w-0"><div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${s ? 'bg-white/20 text-white' : 'bg-blue-50 text-blue-600'}">${ic(iconOf(i.icon, 'power'), 'w-4 h-4')}</div><span class="text-xs sm:text-sm truncate">${esc(i.title)}</span></div>${ic('arrow-right', 'w-4 h-4 shrink-0 transition-transform ' + (s ? 'text-white translate-x-0.5' : 'text-slate-300'))}</button>`; }).join('')}</div>
+        <div class="mt-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-600 space-y-2"><span class="font-bold text-slate-900 block text-xs uppercase tracking-wide">Equipment Assistance</span><p class="leading-relaxed">If an accessory or power cable is faulty, our IT Helpdesk counter can provide tested replacement equipment.</p>${nav('contact', '', 'text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1 pt-1', `<span>Contact Support Counter</span>${ic('arrow-right', 'w-3.5 h-3.5')}`)}</div></div>
+      <div id="hardware-detail-${cur.id}" class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
+        <div class="flex items-center gap-4 border-b border-slate-100 pb-5"><div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center shrink-0">${ic(iconOf(cur.icon, 'power'), 'w-6 h-6')}</div><div><span class="text-xs font-bold uppercase tracking-wider text-blue-600">Hardware Guide</span><h2 class="text-xl sm:text-2xl font-bold text-slate-900">${esc(cur.title)}</h2></div></div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/80 text-xs sm:text-sm text-slate-700 leading-relaxed"><span class="font-semibold text-slate-900 block mb-1">Problem Description:</span>${esc(cur.symptoms.join('. '))}.</div>
+        <div class="space-y-3"><h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Simple Troubleshooting Steps</h3>${stepList(cur.steps, 'blue')}</div>
+        ${cur.proTip ? tipBox(cur.proTip) : ''}
+        <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-slate-50 p-4 rounded-xl"><div class="flex items-center gap-2.5 text-xs text-slate-700">${ic('life-buoy', 'w-4 h-4 text-blue-600 shrink-0')}<span><strong>Still not working?</strong> ${esc(cur.escalation)}</span></div>${nav('contact', '', 'px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl transition-colors shrink-0 shadow-xs', 'Contact IT Support &rarr;')}</div>
+      </div></div></div>`;
+  }
+
+  function software() {
+    const cur = D.SOFTWARE.find((i) => i.id === P.sel) || D.SOFTWARE[0];
+    return `<div class="space-y-8 pb-12">${pageHead('Software Support', 'Practical troubleshooting steps for applications, email, accounts, and file saving.')}
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">${D.SOFTWARE.map((s) => { const a = s.id === cur.id; return `<button id="sw-tab-${s.id}" data-act="pick" data-id="${s.id}" class="p-3.5 rounded-xl text-center border transition-all flex flex-col items-center justify-center gap-2 ${a ? 'bg-blue-600 text-white border-blue-600 shadow-xs font-semibold' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300'}"><div class="w-9 h-9 rounded-lg flex items-center justify-center ${a ? 'bg-white/20 text-white' : 'bg-indigo-50 text-indigo-600'}">${ic(iconOf(s.icon, 'app-window'), 'w-5 h-5')}</div><span class="text-xs font-medium line-clamp-1">${esc(s.title)}</span></button>`; }).join('')}</div>
+    <div id="software-detail-${cur.id}" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
+      <div class="flex items-center gap-4 border-b border-slate-100 pb-5"><div class="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">${ic(iconOf(cur.icon, 'app-window'), 'w-6 h-6')}</div><div><span class="text-xs font-bold uppercase tracking-wider text-indigo-600">${esc(cur.app)} Issue</span><h2 class="text-xl sm:text-2xl font-bold text-slate-900">${esc(cur.title)}</h2></div></div>
+      <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/80 text-xs sm:text-sm text-slate-700 leading-relaxed"><span class="font-semibold text-slate-900 block mb-1">Common Signs:</span>${esc(cur.symptoms.join('. '))}.</div>
+      <div class="space-y-3"><h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Practical Resolution Steps</h3>${stepList(cur.steps, 'indigo')}</div>
+      ${cur.proTip ? tipBox(cur.proTip) : ''}
+      <div class="p-4 bg-purple-50 border border-purple-200 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-purple-900"><div class="flex items-center gap-3">${ic('book-open', 'w-5 h-5 text-purple-600 shrink-0')}<p class="leading-relaxed">Need a detailed step-by-step walkthrough? Visit our team-created <strong>Tutorials</strong> page.</p></div>${nav('tutorials', '', 'px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold rounded-xl transition-colors shrink-0 shadow-xs', 'Open Tutorials &rarr;')}</div>
+      <div class="pt-2 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"><div class="flex items-center gap-2.5 text-xs text-slate-600">${ic('life-buoy', 'w-4 h-4 text-slate-400 shrink-0')}<span>${esc(cur.alternativeSolution || 'If the problem persists, our IT team can assist you.')}</span></div>${nav('contact', '', 'text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1', `<span>Contact IT Support</span>${ic('arrow-right', 'w-3.5 h-3.5')}`)}</div>
+    </div></div>`;
+  }
+
+  function troubleshooting() {
+    const link = (p, c, i, t, d) => nav(p, '', `p-5 bg-white rounded-2xl border border-slate-200 hover:border-${c}-300 shadow-xs hover:shadow-md transition-all text-left flex items-start justify-between group`, `<div class="space-y-1.5"><div class="w-8 h-8 rounded-lg bg-${c}-50 text-${c}-600 flex items-center justify-center mb-2">${ic(i, 'w-4 h-4')}</div><h3 class="text-sm font-bold text-slate-900 group-hover:text-${c}-600 transition-colors">${t}</h3><p class="text-xs text-slate-500 leading-relaxed">${d}</p></div>${ic('arrow-right', `w-4 h-4 text-slate-300 group-hover:text-${c}-600 group-hover:translate-x-1 transition-all mt-1`)}`);
+    return `<div class="space-y-8 pb-12">${pageHead('Troubleshooting Guide', 'Quick, practical solutions for the 5 most common IT issues.')}
+    <div class="space-y-4">${D.TROUBLE.map((t) => { const o = P.open === t.id; const icn = t.icon === 'HardDrive' ? 'monitor' : iconOf(t.icon, 'triangle-alert'); return `<div id="troubleshoot-item-${t.id}" class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs transition-all">
+      <button data-act="toggle-topic" data-id="${t.id}" aria-expanded="${o}" class="w-full p-5 sm:p-6 flex items-center justify-between gap-4 text-left hover:bg-slate-50/60 transition-colors"><div class="flex items-center gap-3.5 min-w-0"><div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-100">${ic(icn, 'w-5 h-5')}</div><div><h2 class="text-base sm:text-lg font-bold text-slate-900">${esc(t.title)}</h2><p class="text-xs text-slate-500 mt-0.5 line-clamp-1">Common causes: ${esc(t.commonCauses.join(', '))}</p></div></div><div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">${ic(o ? 'chevron-up' : 'chevron-down', 'w-4 h-4')}</div></button>
+      ${o ? `<div class="px-5 sm:px-6 pb-6 pt-2 border-t border-slate-100 space-y-4"><h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Recommended Steps</h3><div class="space-y-3">${t.primarySteps.map((s) => `<div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs sm:text-sm"><span class="w-5 h-5 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">${s.step}</span><div><strong class="text-slate-900 block mb-0.5">${esc(s.title)}</strong><p class="text-slate-600 leading-relaxed">${esc(s.details)}</p></div></div>`).join('')}</div></div>` : ''}</div>`; }).join('')}</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">${link('tutorials', 'purple', 'book-open', 'Our Tutorials', 'Step-by-step guides created by our team for error screenshots and Wi-Fi.')}${link('faqs', 'teal', 'circle-help', 'Frequently Asked Questions', 'Quick answers to the 6 most common IT questions.')}${link('contact', 'blue', 'headphones', 'Contact IT Support', 'If the problem continues, reach out to our team for assistance.')}</div></div>`;
+  }
+
+  function faqs() {
+    return `<div class="space-y-6 pb-12">${pageHead('Frequently Asked Questions', 'Quick answers to common IT support questions.')}<div class="space-y-3">${D.FAQS.map((f) => { const o = !!P.open[f.id]; return `<div id="faq-item-${f.id}" class="bg-white rounded-xl border transition-all overflow-hidden ${o ? 'border-blue-400 shadow-xs' : 'border-slate-200 hover:border-slate-300'}">
+      <button type="button" data-act="toggle-faq" data-id="${f.id}" aria-expanded="${o}" class="w-full flex items-center justify-between p-4 sm:p-5 text-left transition-colors"><div class="flex items-center gap-3 min-w-0 pr-4"><div class="w-7 h-7 rounded-md flex items-center justify-center shrink-0 ${o ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-500'}">${ic('circle-help', 'w-4 h-4')}</div><h2 class="text-sm sm:text-base font-bold text-slate-900">${esc(f.question)}</h2></div><div class="shrink-0 p-1 text-slate-400">${o ? ic('chevron-up', 'w-5 h-5 text-blue-600') : ic('chevron-down', 'w-5 h-5')}</div></button>
+      ${o ? `<div class="px-4 sm:px-5 pb-5 pt-1 text-sm text-slate-600 leading-relaxed border-t border-slate-100"><p>${esc(f.answer)}</p></div>` : ''}</div>`; }).join('')}</div></div>`;
+  }
+
+  const DL = { 'dl-chrome': ['globe', 'text-blue-600', 'bg-blue-50 border-blue-100'], 'dl-firefox': ['compass', 'text-amber-600', 'bg-amber-50 border-amber-100'], 'dl-7zip': ['archive', 'text-emerald-600', 'bg-emerald-50 border-emerald-100'], 'dl-powertoys': ['sliders-horizontal', 'text-indigo-600', 'bg-indigo-50 border-indigo-100'], 'dl-powershell': ['terminal', 'text-blue-700', 'bg-blue-50 border-blue-100'] };
+  const VN = { 'v-microsoft': ['cloud', 'text-sky-600', 'bg-sky-50 border-sky-100'], 'v-apple': ['laptop', 'text-slate-800', 'bg-slate-100 border-slate-200'], 'v-dell': ['laptop', 'text-blue-600', 'bg-blue-50 border-blue-100'], 'v-hp': ['printer', 'text-cyan-600', 'bg-cyan-50 border-cyan-100'], 'v-lenovo': ['laptop', 'text-red-600', 'bg-red-50 border-red-100'] };
+  function linkGrid(items, map, nameKey, descKey, urlKey, btn, fallback) {
+    return `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${items.map((it) => { const m = map[it.id] || fallback; return `<div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"><div class="space-y-4"><div class="flex items-center gap-3.5"><div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${m[2]}">${ic(m[0], 'w-6 h-6 ' + m[1])}</div><div><h2 class="text-lg font-bold text-slate-900 leading-snug">${esc(it[nameKey])}</h2></div></div><p class="text-sm text-slate-600 leading-relaxed min-h-[40px]">${esc(it[descKey])}</p></div><div class="pt-5 mt-4 border-t border-slate-100"><a href="${esc(it[urlKey])}" target="_blank" rel="noopener noreferrer" class="${cardBtn}"><span>${btn}</span>${ic('external-link', 'w-4 h-4')}</a></div></div>`; }).join('')}</div>`;
+  }
+  const downloads = () => `<div class="space-y-8 pb-12">${pageHead('Software Downloads', 'Useful tools to help with everyday computing tasks.')}${linkGrid(D.DOWNLOADS, DL, 'name', 'description', 'officialUrl', 'Visit Official Download Page', ['globe', 'text-slate-600', 'bg-slate-50 border-slate-100'])}${safety("Download software only from trusted official sources. Follow your organization's software installation policies.")}</div>`;
+  const vendors = () => `<div class="space-y-8 pb-12">${pageHead('Vendor Support', 'Direct links to official manufacturer support websites.')}${linkGrid(D.VENDORS, VN, 'name', 'notes', 'supportUrl', 'Visit Official Support Website', ['laptop', 'text-slate-600', 'bg-slate-50 border-slate-100'])}${safety('Always access manufacturer support through verified official websites. Never enter device credentials on unverified third-party pages.')}</div>`;
+
+  /* ----- tutorials ----- */
+  const CATS = ['All Tutorials', 'Windows Basics', 'Troubleshooting', 'Hardware Support', 'Network Support'];
+  const filteredTuts = () => { const q = P.q.toLowerCase().trim(); return D.TUTORIALS.filter((t) => (P.cat === 'All Tutorials' || t.category === P.cat) && (!q || [t.title, t.summary, t.introduction, t.category].some((x) => x.toLowerCase().includes(q)))); };
+  function tutResults() {
+    const list = filteredTuts();
+    return `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">${list.map((t) => `<article class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs hover:border-purple-300 hover:shadow-md transition-all flex flex-col justify-between space-y-5"><div class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2"><span class="text-[11px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-md border border-purple-100">${esc(t.category)}</span><div class="flex items-center gap-3 text-xs text-slate-500"><span class="inline-flex items-center gap-1">${ic('graduation-cap', 'w-3.5 h-3.5 text-purple-600')}${esc(t.difficulty)}</span><span>•</span><span class="inline-flex items-center gap-1">${ic('clock', 'w-3.5 h-3.5 text-slate-400')}${esc(t.estimatedTime)}</span></div></div>
+      <div class="flex items-start gap-3.5"><div class="w-11 h-11 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 border border-purple-100">${ic(iconOf(t.iconName, 'book-open'), 'w-5 h-5')}</div><div><h2 class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">${esc(t.title)}</h2></div></div>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${esc(t.summary)}</p>
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-1.5 text-xs text-slate-600"><span class="font-semibold text-slate-800 text-[11px] uppercase tracking-wider block">Key Steps Covered:</span><ul class="space-y-1 text-slate-600">${t.steps.slice(0, 2).map((s) => `<li class="flex items-start gap-1.5">${ic('circle-check', 'w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5')}<span>${esc(s.title)}</span></li>`).join('')}<li class="text-[11px] text-slate-400 pl-5">+ ${t.steps.length - 2} more detailed steps with screenshot placeholders</li></ul></div></div>
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-3"><span class="text-[11px] text-slate-400">By ${D.ORG_NAME} IT Team</span><button type="button" data-act="open-tut" data-id="${t.id}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors group cursor-pointer"><span>Read Tutorial</span>${ic('arrow-right', 'w-4 h-4 group-hover:translate-x-0.5 transition-transform')}</button></div></article>`).join('')}</div>
+    ${list.length ? '' : `<div class="text-center py-12 bg-white rounded-2xl border border-slate-200 p-8 space-y-3">${ic('circle-help', 'w-10 h-10 text-purple-400 mx-auto')}<h3 class="text-base font-bold text-slate-900">No original tutorials found</h3><p class="text-slate-500 text-xs sm:text-sm max-w-md mx-auto">No tutorials match your current search query "${esc(P.q)}" in category "${esc(P.cat)}".</p><button type="button" data-act="reset-tut" class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg text-xs font-semibold transition-colors">${ic('rotate-ccw', 'w-3.5 h-3.5')}<span>Reset filters &amp; search</span></button></div>`}`;
+  }
+  const tutPills = () => CATS.map((c) => `<button type="button" data-act="tut-cat" data-id="${c}" class="px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${P.cat === c ? 'bg-purple-600 text-white shadow-xs font-semibold' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}">${c}</button>`).join('');
+  function tutorials() {
+    return `<div class="space-y-8 pb-12">
+    <div class="border-b border-slate-200 pb-5"><div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-purple-600 mb-1">${ic('book-open', 'w-3.5 h-3.5')}<span>TEAM-CREATED GUIDES</span></div><h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Our Tutorials</h1><p class="text-sm sm:text-base text-slate-600 mt-1.5 max-w-3xl leading-relaxed">Step-by-step guides created by our team to help you solve common IT problems.</p><p class="text-xs text-slate-400 mt-2 flex items-center gap-1.5">${ic('info', 'w-3.5 h-3.5 text-purple-600 shrink-0')}<span>Tutorials created by the Charlie Brown IT Support team for students, faculty, and staff.</span></p></div>
+    <div class="flex flex-col lg:flex-row gap-3.5 items-stretch lg:items-center justify-between"><div id="tut-pills" class="flex flex-wrap gap-2">${tutPills()}</div>
+      <div class="relative w-full lg:w-80"><label for="tut-search" class="sr-only">Search our original tutorials</label>${ic('search', 'w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none')}<input id="tut-search" type="text" placeholder="Search tutorials by title or topic..." class="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-white border border-slate-200 rounded-lg focus:outline-hidden focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-900 placeholder:text-slate-400" /><button type="button" id="tut-clear" data-act="clear-tut-search" title="Clear search" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5">${ic('x', 'w-3.5 h-3.5')}</button></div></div>
+    <div id="tut-results">${tutResults()}</div>
+    <div class="p-6 bg-slate-900 text-slate-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-slate-800"><div class="space-y-1 text-xs sm:text-sm"><h2 class="font-bold text-white text-base">Need guidance not covered in these tutorials?</h2><p class="text-slate-400 max-w-xl leading-relaxed">Our helpdesk staff at ${D.ORG_NAME} is available to walk you through any unique hardware or software scenario, or create an additional customized tutorial.</p></div>${nav('contact', '', 'px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors shrink-0 shadow-xs cursor-pointer', 'Contact Support &rarr;')}</div>
+    <div id="tut-modal"></div></div>`;
+  }
+  const li = (arr, dot) => arr.map((x) => `<li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full ${dot} mt-1.5 shrink-0"></span><span>${esc(x)}</span></li>`).join('');
+  function tutModal(t) {
+    const note = (cls, i, ic2, label, txt) => `<div class="ml-2 sm:ml-10 p-3 ${cls} rounded-xl text-xs flex items-start gap-2">${ic(i, 'w-4 h-4 shrink-0 mt-0.5 ' + ic2)}<div><strong class="font-semibold">${label} </strong><span>${esc(txt)}</span></div></div>`;
+    return `<div id="tut-overlay" class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="tutorial-modal-title"><div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden border border-slate-200 my-auto text-left">
+    <div class="p-5 sm:p-6 border-b border-slate-200 bg-slate-50/80 flex items-start justify-between gap-4 sticky top-0 z-10 backdrop-blur-sm"><div class="space-y-1.5"><div class="flex flex-wrap items-center gap-2"><span class="text-[11px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-md border border-purple-200">${esc(t.category)}</span><span class="text-xs text-slate-500 font-medium">Difficulty: <strong class="text-slate-700">${esc(t.difficulty)}</strong></span><span class="text-xs text-slate-400">•</span><span class="text-xs text-slate-500 font-medium">${esc(t.estimatedTime)}</span></div><h2 id="tutorial-modal-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-snug">${esc(t.title)}</h2></div>
+      <div class="flex items-center gap-2 shrink-0"><button type="button" id="tut-share" data-act="copy-link" class="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition-colors text-xs flex items-center gap-1" title="Share Tutorial">${ic('file-text', 'w-4 h-4')}<span class="hidden sm:inline">Share</span></button><button type="button" data-act="close-tut" class="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer" aria-label="Close tutorial modal">${ic('x', 'w-5 h-5')}</button></div></div>
+    <div class="p-5 sm:p-8 overflow-y-auto space-y-8 text-slate-800 text-sm">
+      <div class="space-y-3"><div class="p-4 bg-purple-50/60 border border-purple-100 rounded-xl text-purple-950 text-xs sm:text-sm leading-relaxed"><strong class="font-semibold text-purple-900 block mb-1">About this tutorial:</strong>${esc(t.introduction)}</div><p class="text-[11px] text-slate-400 italic">Authored by the Charlie Brown IT Support team for CIS 285 End User Training and Support.</p></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3"><div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-700">${ic('circle-check', 'w-4 h-4 text-purple-600')}<span>What You Will Learn</span></div><ul class="space-y-2 text-xs text-slate-700">${li(t.whatYouWillLearn, 'bg-purple-600')}</ul></div>
+        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3"><div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">${ic('info', 'w-4 h-4 text-slate-600')}<span>Requirements Before Starting</span></div><ul class="space-y-2 text-xs text-slate-700">${li(t.requirements, 'bg-slate-500')}</ul></div></div>
+      <div class="space-y-6"><div class="border-b border-slate-200 pb-2"><h3 class="text-lg font-bold text-slate-900 tracking-tight">Step-by-Step Instructions</h3><p class="text-xs text-slate-500 mt-0.5">Follow each numbered step in sequence.</p></div><div class="space-y-6">
+        ${t.steps.map((st) => `<div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-2xs space-y-4"><div class="flex items-start gap-3"><span class="w-7 h-7 rounded-lg bg-purple-600 text-white font-bold text-xs flex items-center justify-center shrink-0">${st.stepNumber}</span><div class="space-y-1"><h4 class="font-bold text-slate-900 text-base">${esc(st.title)}</h4><p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${esc(st.instruction)}</p></div></div>
+          ${st.details && st.details.length ? `<ul class="ml-10 space-y-1.5 text-xs text-slate-600 list-disc list-outside pl-2">${st.details.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>` : ''}
+          <div class="ml-2 sm:ml-10 p-4 sm:p-5 rounded-xl border-2 border-dashed border-purple-200 bg-purple-50/40 space-y-2"><div class="flex items-center gap-2 text-xs font-bold text-purple-900">${ic('image', 'w-4 h-4 text-purple-600')}<span>${esc(st.screenshotPlaceholder.label)}</span></div><p class="text-xs text-slate-600 leading-relaxed">${esc(st.screenshotPlaceholder.description)}</p><div class="pt-1.5 border-t border-purple-200/60 flex items-center justify-between text-[11px] text-purple-700"><span>Status: Screenshot placeholder</span><span class="italic">To be captured and added by Charlie Brown IT team</span></div></div>
+          ${st.proTip ? note('bg-blue-50 border border-blue-200/80 text-blue-900', 'sparkles', 'text-blue-600', 'Tip:', st.proTip) : ''}${st.caution ? note('bg-amber-50 border border-amber-200/80 text-amber-900', 'triangle-alert', 'text-amber-600', 'Caution:', st.caution) : ''}</div>`).join('')}</div></div>
+      <div class="p-5 bg-emerald-50/80 border border-emerald-200 rounded-2xl space-y-2"><div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">${ic('circle-check', 'w-4 h-4 text-emerald-600')}<span>Expected Result</span></div><p class="text-xs sm:text-sm text-emerald-950 leading-relaxed">${esc(t.expectedResult)}</p></div>
+      <div class="space-y-3"><div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-800">${ic('circle-help', 'w-4 h-4 text-purple-600')}<span>Common Problems &amp; Troubleshooting Tips</span></div><div class="space-y-2.5">${t.commonProblems.map((c) => `<div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1.5"><p class="font-bold text-slate-900">Problem: <span class="font-semibold text-rose-700">${esc(c.problem)}</span></p><p class="text-slate-600 leading-relaxed"><strong class="font-semibold text-slate-800">Solution: </strong>${esc(c.solution)}</p></div>`).join('')}</div></div>
+      ${t.safetyReminders && t.safetyReminders.length ? `<div class="p-5 bg-amber-50/70 border border-amber-200 rounded-2xl space-y-2.5 text-xs text-amber-950"><div class="flex items-center gap-2 font-bold uppercase tracking-wider text-amber-800">${ic('shield-alert', 'w-4 h-4 text-amber-600')}<span>Safety &amp; Security Reminders</span></div><ul class="space-y-1.5 list-disc list-inside">${t.safetyReminders.map((s) => `<li class="leading-relaxed">${esc(s)}</li>`).join('')}</ul></div>` : ''}
+      ${t.references && t.references.length ? `<div class="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-2 text-slate-500"><span class="font-bold text-slate-700 block">Technical Verification References</span><p class="text-[11px] leading-relaxed text-slate-500">The instructions in this tutorial were authored by the Charlie Brown IT Support team and cross-referenced with official vendor technical documentation:</p><ul class="space-y-1">${t.references.map((r) => `<li class="text-[11px] flex items-center gap-1.5 flex-wrap"><strong class="text-slate-700">${esc(r.title)}</strong><span>— ${esc(r.source)}</span>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:underline inline-flex items-center gap-0.5 ml-1"><span>Verify source</span>${ic('external-link', 'w-3 h-3')}</a>` : ''}</li>`).join('')}</ul></div>` : ''}
+    </div>
+    <div class="p-4 sm:p-5 border-t border-slate-200 bg-slate-50 flex items-center justify-between gap-3"><span class="text-xs text-slate-500 hidden sm:inline">Press <kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded text-[10px] font-mono">ESC</kbd> to close</span><div class="flex items-center gap-2.5 ml-auto"><button type="button" data-act="close-tut" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-semibold transition-colors cursor-pointer">Back to All Tutorials</button><button type="button" data-act="tut-contact" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-semibold transition-colors cursor-pointer">Still Need Help? Open Ticket &rarr;</button></div></div></div></div>`;
+  }
+  function openTut(id) {
+    const t = D.TUTORIALS.find((x) => x.id === id);
+    if (!t || !$('#tut-modal')) return;
+    P.active = id; $('#tut-modal').innerHTML = tutModal(t); document.body.style.overflow = 'hidden'; icons();
+  }
+  function closeTut() { P.active = null; const m = $('#tut-modal'); if (m) m.innerHTML = ''; document.body.style.overflow = ''; }
+
+  /* ----- contact ----- */
+  function contact() {
+    const inp = 'w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all';
+    const lab = (id, t) => `<label for="${id}" class="block text-xs font-bold text-slate-700 uppercase tracking-wider">${t} <span class="text-rose-500">*</span></label>`;
+    const sd = P.sub;
+    const info = (c, i, t, v) => `<div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-${c}-50 text-${c}-600 flex items-center justify-center shrink-0 mt-0.5">${ic(i, 'w-4 h-4')}</div><div><span class="font-semibold text-slate-900 block">${t}</span><span class="text-slate-600">${v}</span></div></div>`;
+    return `<div class="space-y-8 pb-12">${pageHead('Contact IT Support', `Submit a support request or contact the ${D.ORG_NAME} helpdesk team.`)}
+    <div class="p-4 bg-blue-50 border border-blue-200 rounded-2xl flex items-start gap-3.5 text-xs sm:text-sm text-blue-900">${ic('info', 'w-5 h-5 text-blue-600 shrink-0 mt-0.5')}<p class="leading-relaxed"><strong>Demonstration Notice:</strong> This website was created for a university group project. Submitting this form stores your request locally on this device for demonstration purposes.</p></div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"><div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs">
+    ${sd ? `<div class="space-y-6 text-center py-4"><div class="w-14 h-14 bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto">${ic('circle-check', 'w-8 h-8')}</div><div class="space-y-1"><h2 class="text-xl font-bold text-slate-900">Request Recorded (Demonstration)</h2><p class="text-sm text-slate-600">Thank you, ${esc(sd.fullName)}! Your request has been recorded locally.</p></div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left text-xs sm:text-sm space-y-2"><div><span class="text-slate-400 font-medium block">Contact:</span><span class="text-slate-900 font-semibold">${esc(sd.fullName)} (${esc(sd.email)})</span></div><div><span class="text-slate-400 font-medium block">Category:</span><span class="text-slate-900 font-semibold">${esc(sd.category)}</span></div><div><span class="text-slate-400 font-medium block">Problem Description:</span><p class="text-slate-700 mt-0.5 leading-relaxed bg-white p-2.5 rounded-lg border border-slate-100">${esc(sd.description)}</p></div></div>
+      <button data-act="reset-contact" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-colors shadow-xs">Submit Another Request</button></div>` :
+    `<form id="contact-form" class="space-y-5"><div><h2 class="text-lg font-bold text-slate-900">Request IT Assistance</h2><p class="text-xs text-slate-500 mt-0.5">Please fill out the form below with basic details about the problem.</p></div>
+      <div class="space-y-1.5">${lab('contact-name', 'Full Name')}<input id="contact-name" type="text" required placeholder="e.g. Charlie Brown" class="${inp}" /></div>
+      <div class="space-y-1.5">${lab('contact-email', 'Email Address')}<input id="contact-email" type="email" required placeholder="e.g. charlie@charliebrown-org.edu" class="${inp}" /></div>
+      <div class="space-y-1.5">${lab('contact-category', 'Issue Category')}<select id="contact-category" class="${inp.replace(' placeholder:text-slate-400', '')}"><option value="Hardware Support">Hardware Support (PC, Monitor, Printer)</option><option value="Software Support">Software Support (Applications, Office)</option><option value="Network / Wi-Fi">Network / Wi-Fi Connectivity</option><option value="Account / Login">Account &amp; Sign-in</option><option value="Other Question">Other Question</option></select></div>
+      <div class="space-y-1.5">${lab('contact-description', 'Short Description of the Problem')}<textarea id="contact-description" required rows="4" placeholder="Please describe what happened, any error messages, and what you were doing..." class="${inp} resize-y"></textarea></div>
+      <button type="submit" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-xs transition-colors">${ic('send', 'w-4 h-4')}<span>Submit Support Request</span></button></form>`}
+    </div><div class="lg:col-span-5 space-y-6"><div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4"><h2 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">Helpdesk Information</h2><div class="space-y-3.5 text-xs sm:text-sm text-slate-700">${info('blue', 'phone', 'Phone Support', D.PHONE)}${info('indigo', 'mail', 'Email Inquiries', D.EMAIL)}${info('amber', 'clock', 'Operating Hours', D.HOURS)}${info('emerald', 'map-pin', 'Walk-In Location', D.LOCATION)}</div></div>
+    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-600 leading-relaxed"><span class="font-bold text-slate-900 block mb-1">Before submitting a request:</span>Try checking our <strong>Tutorials</strong> and <strong>FAQs</strong> pages. Many common problems, like Wi-Fi reconnections or slow computers, can be resolved in a couple of minutes!</div></div></div></div>`;
+  }
+
+  const PAGES = { home, hardware, software, troubleshooting, faqs, tutorials, downloads, vendors, contact };
+  const initState = { hardware: (t) => ({ sel: t || D.HARDWARE[0].id }), software: (t) => ({ sel: t || D.SOFTWARE[0].id }), troubleshooting: (t) => ({ open: t || D.TROUBLE[0].id }), faqs: (t) => ({ open: Object.assign({ 'faq-1': true }, t ? { [t]: true } : {}) }), tutorials: () => ({ cat: 'All Tutorials', q: '' }), contact: () => ({ sub: null }) };
+
+  /* ---------- global search modal ---------- */
+  const SI = () => [].concat(
+    D.HARDWARE.map((x) => ({ id: x.id, title: x.title, category: 'Hardware Support', snippet: x.symptoms.join(', ') + ' - ' + x.quickCheck, page: 'hardware', icon: 'hard-drive' })),
+    D.SOFTWARE.map((x) => ({ id: x.id, title: x.app + ': ' + x.title, category: 'Software Support', snippet: x.symptoms.join(', ') + ' - ' + (x.steps[0] || {}).description, page: 'software', icon: 'app-window' })),
+    D.TROUBLE.map((x) => ({ id: x.id, title: x.title, category: 'Troubleshooting', snippet: x.commonCauses.join(', ') + ' - ' + (x.primarySteps[0] || {}).title, page: 'troubleshooting', icon: 'circle-alert' })),
+    D.FAQS.map((x) => ({ id: x.id, title: x.question, category: `FAQ (${x.category})`, snippet: x.answer, page: 'faqs', icon: 'circle-help' })),
+    D.TUTORIALS.map((x) => ({ id: x.id, title: x.title, category: `Tutorials (${x.category})`, snippet: x.summary, page: 'tutorials', icon: 'book-open' })),
+    D.DOWNLOADS.map((x) => ({ id: x.id, title: x.name, category: `Downloads (${x.category})`, snippet: x.description, page: 'downloads', icon: 'download' })));
+  let ITEMS = [];
+  function searchBody(q) {
+    q = q.toLowerCase().trim();
+    if (!q) {
+      const jump = [['hardware', 'hard-drive', 'text-blue-600', 'Hardware Issues'], ['software', 'app-window', 'text-indigo-600', 'Software Issues'], ['troubleshooting', 'circle-alert', 'text-amber-600', 'Troubleshooting'], ['faqs', 'circle-help', 'text-teal-600', 'Support FAQs'], ['tutorials', 'book-open', 'text-purple-600', 'Step-by-step Tutorials'], ['downloads', 'download', 'text-emerald-600', 'Software Downloads']];
+      return `<div class="p-4 sm:p-6 space-y-4"><div><p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Popular Search Terms</p><div class="flex flex-wrap gap-2">${['Password reset', "Computer won't turn on", 'Wi-Fi not working', 'Printer offline', 'Slow computer', 'Excel calculating', 'Safe mode', 'VPN client', 'Clear cache'].map((t) => `<button data-act="sr-term" data-id="${esc(t)}" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 rounded-lg transition-colors border border-slate-200/80">${esc(t)}</button>`).join('')}</div></div>
+      <div class="border-t border-slate-100 pt-4"><p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Quick Category Jumps</p><div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">${jump.map((j) => `<button data-nav="${j[0]}" class="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 text-slate-700 text-left border border-slate-100">${ic(j[1], 'w-4 h-4 ' + j[2])}<span>${j[3]}</span></button>`).join('')}</div></div></div>`;
+    }
+    const res = ITEMS.filter((i) => i.title.toLowerCase().includes(q) || i.snippet.toLowerCase().includes(q) || i.category.toLowerCase().includes(q));
+    if (!res.length) return `<div class="max-h-[60vh] overflow-y-auto p-2"><div class="text-center py-10 px-4"><div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto text-slate-400 mb-3">${ic('search', 'w-6 h-6')}</div><p class="text-sm font-semibold text-slate-800">No matching support articles found for "${esc(q)}"</p><p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">Try checking spelling or use broader keywords like "keyboard", "printer", "Word", or "reboot".</p><div class="mt-4"><button data-nav="contact" class="text-xs font-semibold text-blue-600 hover:text-blue-700 underline">Can't find it? Submit an IT Support Ticket &rarr;</button></div></div></div>`;
+    return `<div class="max-h-[60vh] overflow-y-auto p-2 divide-y divide-slate-100">${res.map((r) => `<button data-nav="${r.page}" data-target="${r.id}" class="w-full p-3 hover:bg-blue-50/60 rounded-xl text-left transition-colors flex items-start gap-3 group"><div class="w-8 h-8 rounded-lg bg-blue-100/70 text-blue-700 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">${ic(r.icon, 'w-4 h-4')}</div><div class="flex-1 min-w-0"><div class="flex items-center gap-2 mb-0.5"><span class="text-[11px] font-semibold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">${esc(r.category)}</span></div><h4 class="text-sm font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">${esc(r.title)}</h4><p class="text-xs text-slate-500 line-clamp-2 mt-0.5">${esc(r.snippet)}</p></div>${ic('arrow-right', 'w-4 h-4 text-slate-400 group-hover:text-blue-600 shrink-0 self-center opacity-0 group-hover:opacity-100 transition-opacity')}</button>`).join('')}</div>`;
+  }
+  function openSearch() {
+    if (S.searchOpen) return;
+    S.searchOpen = true; ITEMS = SI();
+    $('#search').innerHTML = `<div id="sr-overlay" class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-start justify-center pt-16 sm:pt-24 px-4 pb-6"><div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full border border-slate-200 overflow-hidden">
+      <div class="flex items-center px-4 py-3.5 border-b border-slate-200 gap-3">${ic('search', 'w-5 h-5 text-blue-600 shrink-0')}<input id="sr-input" type="text" placeholder="Search all guides, symptoms (e.g., won't turn on, printer offline, Excel, slow)..." class="w-full text-slate-900 text-sm focus:outline-hidden placeholder:text-slate-400" /><button id="sr-clear" data-act="sr-clear" class="hidden p-1 text-slate-400 hover:text-slate-600 rounded-md">${ic('x', 'w-4 h-4')}</button><button data-act="close-search" class="px-2 py-1 text-xs font-semibold text-slate-500 bg-slate-100 hover:bg-slate-200 rounded-md transition-colors">ESC</button></div>
+      <div id="sr-body">${searchBody('')}</div>
+      <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-100 text-[11px] text-slate-500 flex items-center justify-between"><span>Charlie Brown IT Knowledgebase</span><span>${ITEMS.length} indexed topics &amp; guides</span></div></div></div>`;
+    icons();
+    setTimeout(() => { const i = $('#sr-input'); if (i) i.focus(); }, 50);
+  }
+  function closeSearch() { S.searchOpen = false; $('#search').innerHTML = ''; }
+  function setSearchQ(q) { const i = $('#sr-input'); if (i && i.value !== q) i.value = q; $('#sr-body').innerHTML = searchBody(q); $('#sr-clear').classList.toggle('hidden', !q); icons(); if (i) i.focus(); }
+
+  /* ---------- chat widget ---------- */
+  function renderChat() {
+    const c = $('#chat');
+    if (!S.chatOpen) { c.innerHTML = `<button id="open-chat-widget-btn" data-act="chat-open" class="flex items-center gap-2.5 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all font-semibold text-xs sm:text-sm group" aria-label="Open IT Quick Assistant">${ic('message-square', 'w-5 h-5 group-hover:scale-110 transition-transform')}<span>IT Quick Assistant</span><span class="w-2 h-2 rounded-full bg-emerald-400"></span></button>`; icons(); return; }
+    c.innerHTML = `<div class="w-[340px] sm:w-[380px] max-w-[calc(100vw-2.5rem)] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden max-h-[500px]">
+      <div class="bg-slate-900 text-white p-3.5 flex items-center justify-between"><div class="flex items-center gap-2.5"><div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">${ic('circle-help', 'w-4 h-4')}</div><div><h4 class="text-xs font-bold leading-tight">Charlie Brown IT Assistant</h4><span class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Helpdesk Virtual Dispatch</span></div></div><button data-act="chat-close" class="text-slate-400 hover:text-white p-1 rounded-md">${ic('x', 'w-4 h-4')}</button></div>
+      <div id="chat-msgs" class="flex-1 p-3.5 space-y-3 overflow-y-auto max-h-[300px] text-xs bg-slate-50">${S.chatMsgs.map((m) => `<div class="flex flex-col ${m.from === 'user' ? 'items-end' : 'items-start'}"><div class="max-w-[85%] p-3 rounded-2xl leading-relaxed ${m.from === 'user' ? 'bg-blue-600 text-white rounded-tr-xs' : 'bg-white text-slate-800 border border-slate-200 rounded-tl-xs shadow-2xs'}">${esc(m.text)}</div><span class="text-[10px] text-slate-400 mt-1 px-1">${m.time}</span></div>`).join('')}</div>
+      <div class="px-3 py-2 bg-white border-t border-slate-100 flex gap-1.5 overflow-x-auto text-[11px]">${['Password help', 'Slow PC', 'Printer offline', 'Wi-Fi broken'].map((p) => `<button data-act="chat-chip" data-id="${p}" class="whitespace-nowrap px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-md transition-colors">${p}</button>`).join('')}</div>
+      <form id="chat-form" class="p-2.5 bg-white border-t border-slate-200 flex gap-2"><input id="chat-input" type="text" value="${esc(S.chatInput)}" placeholder="Ask an IT question..." class="flex-1 px-3 py-1.5 text-xs bg-slate-100 rounded-lg focus:outline-hidden text-slate-900 placeholder:text-slate-400" /><button type="submit" class="p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">${ic('send', 'w-3.5 h-3.5')}</button></form></div>`;
+    icons();
+  }
+  function botReply(text) {
+    const l = text.toLowerCase(), has = (...k) => k.some((x) => l.includes(x));
+    if (has('turn on', 'power', 'black screen')) return "If your computer won't turn on: Unplug the power cable, hold the power button down for 30 seconds to drain static, reconnect, and test. Check our Hardware Support page for detailed steps!";
+    if (has('wifi', 'wi-fi', 'internet')) return "For Wi-Fi issues, connect to 'CharlieBrown-Secure' using your full email and password. If that fails, try forgetting the network or run 'ipconfig /flushdns' in Command Prompt.";
+    if (has('printer', 'print')) return "For printer problems, select 'CharlieBrown-FollowMe-Print', tap your organization ID badge at the printer station, and check our Hardware Support > Printer Problems section.";
+    if (has('password', 'forgot', 'login')) return 'You can reset your Charlie Brown Org password in 3 minutes at password.charliebrown-org.edu using your phone or authenticator app. See our Tutorials page for a guide!';
+    if (has('slow', 'freeze', 'lag')) return 'To speed up your PC: Perform a clean restart (Start > Power > Restart), check Task Manager (Ctrl + Shift + Esc) for high CPU/memory apps, and see our Tutorials page for our Task Manager guide!';
+    if (has('screenshot', 'snip', 'capture')) return "To capture an error screenshot: Press Windows Key + Shift + S, drag a box over the error dialog, and save the image. See our Tutorials > 'How to Capture and Save an Error Screenshot' guide!";
+    return 'Thank you for contacting the Charlie Brown Helpdesk. For hands-on help, please submit a support ticket via our Contact / Support page or call (555) 242-7543.';
+  }
+
+  /* ---------- router / rendering ---------- */
+  function renderAll() { renderHeader(); renderCrumb(); $('#main').innerHTML = PAGES[S.page](); renderFooter(); icons(); }
+  function renderMain() { $('#main').innerHTML = PAGES[S.page](); icons(); }
+  function route() {
+    const parts = location.hash.replace(/^#\/?/, '').split('/');
+    S.page = PAGES[parts[0]] ? parts[0] : 'home'; S.target = parts[1] ? decodeURIComponent(parts[1]) : undefined; S.menu = false;
+    document.body.style.overflow = '';
+    P = (initState[S.page] || (() => ({})))(S.target);
+    document.title = (S.page === 'home' ? '' : TITLES[S.page] + ' | ') + D.APP_TITLE;
+    renderAll();
+    const sel = { hardware: 'hardware-detail-', software: 'software-detail-', troubleshooting: 'troubleshoot-item-', faqs: 'faq-item-' }[S.page];
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (S.page === 'tutorials' && S.target) openTut(S.target);
+    else if (sel && S.target) { const el = document.getElementById(sel + S.target); if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50); }
+  }
+  function go(page, target) {
+    const h = '#/' + page + (target ? '/' + encodeURIComponent(target) : '');
+    if (location.hash === h) route(); else location.hash = h;
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('[data-act]'), n = e.target.closest('[data-nav]');
+    if (a) {
+      const id = a.dataset.id;
+      switch (a.dataset.act) {
+        case 'open-search': openSearch(); return;
+        case 'close-search': closeSearch(); return;
+        case 'sr-clear': setSearchQ(''); return;
+        case 'sr-term': setSearchQ(id); return;
+        case 'toggle-menu': S.menu = !S.menu; renderHeader(); icons(); return;
+        case 'pick': P.sel = id; renderMain(); return;
+        case 'toggle-topic': P.open = P.open === id ? '' : id; renderMain(); return;
+        case 'toggle-faq': P.open[id] = !P.open[id]; renderMain(); return;
+        case 'tut-cat': P.cat = id; $('#tut-pills').innerHTML = tutPills(); $('#tut-results').innerHTML = tutResults(); icons(); return;
+        case 'clear-tut-search': P.q = ''; $('#tut-search').value = ''; $('#tut-clear').classList.add('hidden'); $('#tut-results').innerHTML = tutResults(); icons(); return;
+        case 'reset-tut': P.cat = 'All Tutorials'; P.q = ''; renderMain(); return;
+        case 'open-tut': openTut(id); return;
+        case 'close-tut': closeTut(); return;
+        case 'tut-contact': closeTut(); go('contact'); return;
+        case 'copy-link':
+          if (navigator.clipboard) { navigator.clipboard.writeText(location.href.split('#')[0]); const b = $('#tut-share'); b.innerHTML = ic('check', 'w-4 h-4 text-emerald-600') + '<span class="text-emerald-700 font-medium hidden sm:inline">Copied</span>'; icons(); setTimeout(() => { if ($('#tut-share')) { $('#tut-share').innerHTML = ic('file-text', 'w-4 h-4') + '<span class="hidden sm:inline">Share</span>'; icons(); } }, 2000); }
+          return;
+        case 'reset-contact': P.sub = null; renderMain(); return;
+        case 'chat-open': S.chatOpen = true; renderChat(); $('#chat-input').focus(); return;
+        case 'chat-close': S.chatOpen = false; renderChat(); return;
+        case 'chat-chip': S.chatInput = id; $('#chat-input').value = id; $('#chat-input').focus(); return;
+      }
+    }
+    if (e.target.id === 'tut-overlay') { closeTut(); return; }
+    if (e.target.id === 'sr-overlay') { closeSearch(); return; }
+    if (n) { if (S.searchOpen) closeSearch(); go(n.dataset.nav, n.dataset.target); }
+  });
+  document.addEventListener('input', (e) => {
+    if (e.target.id === 'sr-input') setSearchQ(e.target.value);
+    else if (e.target.id === 'tut-search') { P.q = e.target.value; $('#tut-clear').classList.toggle('hidden', !P.q); $('#tut-results').innerHTML = tutResults(); icons(); }
+    else if (e.target.id === 'chat-input') S.chatInput = e.target.value;
+  });
+  document.addEventListener('focusin', (e) => { if (e.target.id === 'hero-search-input') { e.target.blur(); openSearch(); } });
+  document.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (e.target.id === 'hero-search-form') openSearch();
+    else if (e.target.id === 'contact-form') {
+      const v = (id) => $('#' + id).value.trim();
+      if (!v('contact-name') || !v('contact-email') || !v('contact-description')) return;
+      const data = { fullName: v('contact-name'), email: v('contact-email'), category: $('#contact-category').value, description: v('contact-description'), submittedAt: nowT() };
+      try { const l = JSON.parse(localStorage.getItem('demo_support_requests') || '[]'); l.push(data); localStorage.setItem('demo_support_requests', JSON.stringify(l)); } catch (err) { /* ignore storage errors */ }
+      P.sub = data; renderMain();
+    } else if (e.target.id === 'chat-form') {
+      const text = S.chatInput.trim(); if (!text) return;
+      S.chatMsgs.push({ from: 'user', text, time: nowT() }); S.chatInput = ''; renderChat();
+      const box = $('#chat-input'); if (box) box.focus();
+      setTimeout(() => { S.chatMsgs.push({ from: 'bot', text: botReply(text), time: nowT() }); if (S.chatOpen) { renderChat(); } }, 600);
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); S.searchOpen ? closeSearch() : openSearch(); }
+    if (e.key === 'Escape') { if (S.searchOpen) closeSearch(); else if (P.active) closeTut(); }
+  });
+  window.addEventListener('hashchange', route);
+  renderChat();
+  route();
+})();
+
+document.getElementById('boot')&&document.getElementById('boot').remove();</script>
+</body>
+</html>
